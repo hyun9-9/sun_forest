@@ -18,14 +18,14 @@ class SunForestApplicationTests {
 	@Test
 	void save() {
 		memberRepository.save(Member.builder()
-						.userId("ssjeong")
-						.password("ssjeong")
+						.userId("sun_forest")
+						.password("sun_forest")
 						.build());
 	}
 
 	@Test
 	void select() {
 		Optional<Member> member = memberRepository.findById(1);
-		System.out.println("[프뚜] > " + member);
+		System.out.println("[로그] > " + member);
 	}
 }
