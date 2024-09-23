@@ -1,5 +1,7 @@
 package com.sun_forest.sun_forest.model.member;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,8 +22,23 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String userId;
+    @Column(nullable = false)
+    private String memberId;
 
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
     private String password;
+ 
+    @Column(nullable = true)
+    private int sunCoin;
+
+    @Column(nullable = false)
+    private String img;
+
+    @Column(nullable = false)
+    private String memo;
+
 
 }
