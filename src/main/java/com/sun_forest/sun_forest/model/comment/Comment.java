@@ -1,4 +1,4 @@
-package com.sun_forest.sun_forest.model.member;
+package com.sun_forest.sun_forest.model.comment;
 
 // import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Column;
@@ -16,29 +16,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(nullable = false)
-    private String memberId;
-
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String password;
- 
     @Column(nullable = true)
-    private int sunCoin;
+    private String content;
 
-    @Column(nullable = false)
-    private String img;
-
-    @Column(nullable = false)
-    private String memo;
-
+    @Column(nullable = true)
+    private String replyId;
 
 }

@@ -1,4 +1,4 @@
-package com.sun_forest.sun_forest.model.member;
+package com.sun_forest.sun_forest.model.inout;
 
 // import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Column;
@@ -16,29 +16,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class Inout {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(nullable = false)
-    private String memberId;
+    private String gubun;
 
     @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String password;
- 
-    @Column(nullable = true)
-    private int sunCoin;
-
-    @Column(nullable = false)
-    private String img;
-
-    @Column(nullable = false)
-    private String memo;
-
+    private int num;
 
 }
