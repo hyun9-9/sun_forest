@@ -4,7 +4,7 @@ import BannerComponent from "./component/BannerComponent";
 
 export default function main() {
     return (
-        <BannerComponent />
+       <></>
     );
 }
 
