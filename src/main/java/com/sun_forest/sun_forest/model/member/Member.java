@@ -30,7 +30,7 @@ public class Member {
 
     @Column(nullable = false)
     private String password;
- 
+
     @Column(nullable = true)
     private int sunCoin;
 
@@ -39,6 +39,5 @@ public class Member {
 
     @Column(nullable = false)
     private String memo;
-
 
 }
