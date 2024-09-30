@@ -24,7 +24,7 @@ export default function Banner({memberId}) {
         fetchImage();
     }, [memberId]); 
 
-    // console.log(imag);
+    console.log(imag);
 
     return (
         <div style={{ position: 'relative', width: '100%', maxWidth: '1440px', margin: '0 auto' }}>
