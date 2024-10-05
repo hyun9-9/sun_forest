@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from "react";
 import squirrellogo from "../../assets/img/squirrellogo.png"; 
 import { useMediaQuery } from 'react-responsive';
+import "../../assets/css/Main.css";
 
 export default function Banner({memberId}) {
 
     console.log('[로그]' , memberId);
 
     const[imag, setImag] = useState(null);
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-    const isTablet = useMediaQuery({ query: '(min-width: 769px) and (max-width: 1024px)' });
-    const isDesktop = useMediaQuery({ query: '(min-width: 1025px)' });
+    const isMobile = useMediaQuery({ query: '(max-width: 760px' });
+    const isDesktop = useMediaQuery({ query: '(min-width: 760px)' });
 
     useEffect(() => {
         console.log('[로그 1 ]', memberId); 
@@ -26,32 +26,40 @@ export default function Banner({memberId}) {
         fetchImage();
     }, [memberId]); 
 
-    console.log('이미지경로' , imag);
+    const imagSize = isDesktop ? 100 : 60;
 
     return (
-        <div style={{ position: 'relative', width: '100%', maxWidth: '1440px', margin: '0 auto' }}>
+        <div className='banner'>
             {isDesktop && 
-                <img style={{ width: '100%', height: 'auto' }} alt="bannerPicture" src={squirrellogo} />
+                <img className='desk' alt="bannerPicture" src={squirrellogo} />
             }
 
-            {isTablet && 
-            <img style={{ width: '800px' , height: 'auto' }} alt="bannerPicture" src={squirrellogo} /> }
-
             {isMobile && 
-            <img style={{ width: '360px' ,  height: 'auto'}} alt="bannerPicture" src={squirrellogo} />}
+            <img className='mobile' alt="bannerPicture" src={squirrellogo} />}
 
-            <img
-                src={`http://localhost:8080${imag}`}
-                alt="Overlay"
-                style={{
-                    position: 'absolute', 
-                    top: '20%', 
-                    left: '20%',
-                    width: '100px',
-                    height: '100px', 
-                    objectFit: 'contain' 
-                }} 
-            />
+<div style={{
+                border: '1px solid black', 
+                borderRadius: '50%', 
+                overflow: 'hidden', 
+                width: `${imagSize}px`,
+                height: `${imagSize}px`, 
+                position: 'absolute', 
+                top: '20%', 
+                left: '20%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+                <img
+                    src={`http://localhost:8080${imag}`}
+                    alt="Overlay"
+                    style={{
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'cover',
+                    }} 
+                />
+            </div>
         </div>
     );
 }

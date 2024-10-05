@@ -1,0 +1,16 @@
+.banner {
+    position: relative;
+    width:  100% ;
+    max-Width:  1440px ;
+    margin:  0 auto ;
+}
+
+.desk {
+    width:  100% ;
+    height:  auto ;
+}
+
+.mobile {
+    width:  530px ;
+    height:  auto ;
+}
