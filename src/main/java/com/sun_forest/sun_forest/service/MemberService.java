@@ -1,9 +1,12 @@
-package com.sun_forest.sun_forest.model.member;
+package com.sun_forest.sun_forest.service;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.sun_forest.sun_forest.entity.member.Member;
+import com.sun_forest.sun_forest.repository.MemberRepository;
 
 @Service
 public class MemberService {

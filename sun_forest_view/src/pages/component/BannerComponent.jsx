@@ -14,7 +14,7 @@ export default function Banner({memberId}) {
     useEffect(() => {
         console.log('[로그 1 ]', memberId); 
         const fetchImage = async () => {
-            const response = await fetch(`/api/members/${memberId}/img`);
+            const response = await fetch(`/api/members`);
             if (response.ok) {
                 const imagePath = await response.text(); 
                 setImag(imagePath); 

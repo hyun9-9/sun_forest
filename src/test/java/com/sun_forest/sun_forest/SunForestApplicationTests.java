@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.sun_forest.sun_forest.model.member.Member;
-import com.sun_forest.sun_forest.model.member.MemberRepository;
+import com.sun_forest.sun_forest.entity.member.Member;
+import com.sun_forest.sun_forest.repository.MemberRepository;
 
 @SpringBootTest
 class SunForestApplicationTests {

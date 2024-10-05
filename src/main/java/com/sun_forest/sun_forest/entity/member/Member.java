@@ -1,4 +1,4 @@
-package com.sun_forest.sun_forest.model.member;
+package com.sun_forest.sun_forest.entity.member;
 
 // import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Column;

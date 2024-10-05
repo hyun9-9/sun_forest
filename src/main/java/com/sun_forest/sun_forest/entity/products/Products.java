@@ -1,4 +1,4 @@
-package com.sun_forest.sun_forest.model.products;
+package com.sun_forest.sun_forest.entity.products;
 
 // import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Column;

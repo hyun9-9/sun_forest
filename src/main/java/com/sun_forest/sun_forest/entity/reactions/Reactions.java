@@ -1,4 +1,4 @@
-package com.sun_forest.sun_forest.model.comment;
+package com.sun_forest.sun_forest.entity.reactions;
 
 // import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Column;
@@ -16,16 +16,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Comment {
+public class Reactions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(nullable = true)
-    private String content;
-
-    @Column(nullable = true)
-    private String replyId;
-
+    @Column(nullable = false)
+    private String gubun;
+ 
 }

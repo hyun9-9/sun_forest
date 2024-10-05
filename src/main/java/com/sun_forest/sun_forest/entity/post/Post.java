@@ -1,4 +1,4 @@
-package com.sun_forest.sun_forest.model.inout;
+package com.sun_forest.sun_forest.entity.post;
 
 // import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Column;
@@ -16,16 +16,23 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Inout {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(nullable = false)
-    private String gubun;
+    private String title;
 
     @Column(nullable = false)
-    private int num;
+    private String content;
+
+    @Column(nullable = false)
+    private String gubun;
+ 
+    @Column(nullable = false)
+    private int visit;
+
 
 }
