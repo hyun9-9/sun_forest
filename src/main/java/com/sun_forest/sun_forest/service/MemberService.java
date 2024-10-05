@@ -15,6 +15,7 @@ public class MemberService {
     private MemberRepository memberRepository;
 
     public String getMemberImage(int id) {
+        System.out.println("[로그 서비스]" + id);
         return memberRepository.findById(id)
                 .map(Member::getImg)
                 .orElse(null);
