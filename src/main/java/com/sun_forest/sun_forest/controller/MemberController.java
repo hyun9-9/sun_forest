@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sun_forest.sun_forest.service.MemberService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/members")
+@CrossOrigin(origins = "http://localhost:3000")
 public class MemberController {
 
     @Autowired

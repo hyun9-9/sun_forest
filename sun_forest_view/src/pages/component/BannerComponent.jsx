@@ -14,9 +14,11 @@ export default function Banner({memberId}) {
     useEffect(() => {
         console.log('[로그 1 ]', memberId); 
         const fetchImage = async () => {
-            const response = await fetch(`/api/members`);
+            const response = await fetch(`http://localhost:8080/api/members/${memberId}/img`);
+            console.log(response);
             if (response.ok) {
                 const imagePath = await response.text(); 
+                console.log('응답', imagePath)
                 setImag(imagePath); 
             }
         };
@@ -24,47 +26,22 @@ export default function Banner({memberId}) {
         fetchImage();
     }, [memberId]); 
 
-    console.log(imag);
+    console.log('이미지경로' , imag);
 
     return (
         <div style={{ position: 'relative', width: '100%', maxWidth: '1440px', margin: '0 auto' }}>
-            {isDesktop && (
-                <>
-                <img
-                    style={{ width: '100%', height: 'auto' }} 
-                    alt="bannerPicture"
-                    src={squirrellogo}
-                />
-                <p>
-                    데스크탑
-                </p>
-                </>
-            )}
+            {isDesktop && 
+                <img style={{ width: '100%', height: 'auto' }} alt="bannerPicture" src={squirrellogo} />
+            }
 
-            {isTablet && (
-                <>
-                    <img
-                        style={{ width: '800px' , height: 'auto' }} 
-                        alt="bannerPicture"
-                        src={squirrellogo}
-                    />
-                    <p>테블릿</p>
-                </>
-            )}
+            {isTablet && 
+            <img style={{ width: '800px' , height: 'auto' }} alt="bannerPicture" src={squirrellogo} /> }
 
-            {isMobile && (
-                <>
-                    <img
-                        style={{ width: '360px' ,  height: 'auto'}} 
-                        alt="bannerPicture"
-                        src={squirrellogo}
-                    />
-                    <p>모바일</p>
-                </>
-            )}
+            {isMobile && 
+            <img style={{ width: '360px' ,  height: 'auto'}} alt="bannerPicture" src={squirrellogo} />}
 
             <img
-                src={imag}
+                src={`http://localhost:8080${imag}`}
                 alt="Overlay"
                 style={{
                     position: 'absolute', 
