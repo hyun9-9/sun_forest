@@ -38,3 +38,29 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* 전체 레이아웃 */
+.layout {
+  display: flex;
+  height: 100vh; /* 전체 화면 높이 */
+}
+
+/* 왼쪽 네비게이션 바 */
+.layout .navbar {
+  width: 200px; /* 원하는 너비 설정 */
+  background-color: #f0f0f0; /* 배경색 설정 */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* 네비게이션 그림자 */
+}
+
+/* 오른쪽 컨텐츠 */
+.layout .content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+/* 배너와 페이지 내용 구분 */
+.layout .content .banner {
+  margin-bottom: 20px;
+}
