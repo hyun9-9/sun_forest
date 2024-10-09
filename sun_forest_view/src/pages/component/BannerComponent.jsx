@@ -9,7 +9,7 @@ export default function Banner({memberId}) {
 
     const[imag, setImag] = useState(null);
     const isMobile = useMediaQuery({ query: '(max-width: 760px' });
-    const isDesktop = useMediaQuery({ query: '(min-width: 760px)' });
+    const isDesktop = useMediaQuery({ query: '(min-width: 761px)' });
 
     useEffect(() => {
         console.log('[로그 1 ]', memberId); 
