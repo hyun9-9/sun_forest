@@ -48,16 +48,13 @@ export default function Banner({memberId}) {
                 left: '20%',
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                transform: 'translateX(-30%)' 
             }}>
                 <img
                     src={`http://localhost:8080${imag}`}
                     alt="Overlay"
-                    style={{
-                        width: '100%', 
-                        height: '100%', 
-                        objectFit: 'cover',
-                    }} 
+                    className='profile'
                 />
             </div>
         </div>
