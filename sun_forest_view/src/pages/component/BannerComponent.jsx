@@ -37,20 +37,7 @@ export default function Banner({memberId}) {
             {isMobile && 
             <img className='mobile' alt="bannerPicture" src={squirrellogo} />}
 
-<div style={{
-                border: '1px solid black', 
-                borderRadius: '50%', 
-                overflow: 'hidden', 
-                width: `${imagSize}px`,
-                height: `${imagSize}px`, 
-                position: 'absolute', 
-                top: '20%', 
-                left: '20%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                transform: 'translateX(-30%)' 
-            }}>
+<div className ='profilebox' style={{ width: `${imagSize}px`, height: `${imagSize}px`, }}>
                 <img
                     src={`http://localhost:8080${imag}`}
                     alt="Overlay"

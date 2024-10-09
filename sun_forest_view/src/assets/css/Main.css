@@ -20,3 +20,18 @@
     height: 100%; 
     object-Fit: cover;
 }
+
+.profilebox {
+
+    border: 1px solid black; 
+    border-Radius: 50%; 
+    overflow: hidden; 
+    position: absolute; 
+    top: 20%; 
+    left: 20%;
+    display: flex;
+    justify-Content: center;
+    align-Items: center;
+    transform: translateX(-30%);
+
+}
