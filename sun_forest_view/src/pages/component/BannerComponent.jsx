@@ -42,6 +42,7 @@ export default function Banner({memberId}) {
                     src={`http://localhost:8080${imag}`}
                     alt="Overlay"
                     className='profile'
+                    style={{ width: `${imagSize}px`, height: `${imagSize}px`, }}
                 />
             </div>
         </div>

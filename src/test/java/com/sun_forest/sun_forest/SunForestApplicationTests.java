@@ -21,7 +21,7 @@ class SunForestApplicationTests {
 						.memberId("sunforest")
 						.name("sunforest")
 						.password("sunforest")
-						.img("/img/sunforestimg.png") 
+						.img("/img/person.png") 
 						.memo("sunforestMemo")
 						.build());
 	}
