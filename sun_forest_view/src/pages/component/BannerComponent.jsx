@@ -2,10 +2,16 @@ import React, {useEffect, useState} from "react";
 import squirrellogo from "../../assets/img/squirrellogo.png"; 
 import { useMediaQuery } from 'react-responsive';
 import "../../assets/css/Main.css";
+import Modal from "./Modal";
 
 export default function Banner({memberId}) {
 
     console.log('[로그]' , memberId);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
 
     const[imag, setImag] = useState(null);
     const isMobile = useMediaQuery({ query: '(max-width: 760px' });
@@ -45,6 +51,14 @@ export default function Banner({memberId}) {
                     style={{ width: `${imagSize}px`, height: `${imagSize}px`, }}
                 />
             </div>
+
+            <div>
+    <button onClick={openModal}>Open Modal</button>
+    <Modal isOpen={isModalOpen} closeModal={closeModal}>
+    <h2>hi</h2>
+        <p>it's me</p>
+    </Modal>
+    </div>
         </div>
     );
 }
