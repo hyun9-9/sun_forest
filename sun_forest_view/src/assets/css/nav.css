@@ -1,6 +1,14 @@
 .nav{
   /* margin-left: 25px; */
-  background-color: lightgrey;
-  color:white;
-  width: 180px;
+  background-color: #cbe4a7;
+  /* color:white; */
+  width: 180px;  
+  height: 100%;
 }
+
+.child-nav{
+  text-align: left;
+  padding: 10px;
+}
+
+

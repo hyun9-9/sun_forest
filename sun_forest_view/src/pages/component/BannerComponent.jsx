@@ -32,7 +32,7 @@ export default function Banner({memberId}) {
         fetchImage();
     }, [memberId]); 
 
-    const imagSize = isDesktop ? 100 : 60;
+    // const imagSize = isDesktop ? 100 : 60;
 
     return (
         <div className='banner'>
@@ -43,12 +43,11 @@ export default function Banner({memberId}) {
             {isMobile && 
             <img className='mobile' alt="bannerPicture" src={squirrellogo} />}
 
-<div className ='profilebox' style={{ width: `${imagSize}px`, height: `${imagSize}px`, }}>
+<div className ='profilebox'>
                 <img
                     src={`http://localhost:8080${imag}`}
                     alt="Overlay"
                     className='profile'
-                    style={{ width: `${imagSize}px`, height: `${imagSize}px`, }}
                 />
             </div>
 

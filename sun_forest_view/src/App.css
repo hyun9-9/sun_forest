@@ -2,6 +2,7 @@
   text-align: center;
   max-width: 1080px;
   margin: 0 auto;
+  
 }
 /* 760px 보다 작을때 */
 @media screen and (max-width: 760px) {
@@ -16,7 +17,7 @@
 /* 전체 레이아웃 */
 .layout {
   display: flex;
-  height: 100vh; /* 전체 화면 높이 */
+  /* height: 100%; 전체 화면 높이 */
 }
 
 /* 왼쪽 네비게이션 바 */
