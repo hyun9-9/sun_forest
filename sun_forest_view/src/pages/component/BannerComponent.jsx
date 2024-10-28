@@ -48,11 +48,12 @@ export default function Banner({memberId}) {
                     src={`http://localhost:8080${imag}`}
                     alt="Overlay"
                     className='profile'
+                    onClick={openModal}
                 />
             </div>
 
             <div>
-    <button onClick={openModal}>Open Modal</button>
+
     <Modal isOpen={isModalOpen} closeModal={closeModal}>
     <h2>hi</h2>
         <p>it's me</p>
