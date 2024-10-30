@@ -28,4 +28,16 @@ public class MemberController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/{id}/name")
+    public ResponseEntity<String> getMemberName(@PathVariable int id) {
+        System.out.println("[로그 이름 요청]" + id);
+        String namePath = memberService.getMemberName(id);
+        if (namePath != null) {
+            return ResponseEntity.ok(namePath);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
 }

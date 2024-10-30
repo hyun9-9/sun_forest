@@ -1,4 +1,5 @@
 import React from 'react';
+import "../../assets/css/Main.css";
 
 export default function Modal({ isOpen, children, closeModal }) {
     return (
@@ -17,21 +18,38 @@ export default function Modal({ isOpen, children, closeModal }) {
             backgroundColor: "rgba(0, 0, 0, 0.35)",
           }}
         ></div>
-        <div
-          style={{
+          <div
+            style={{
             position: "absolute",
-            top: "50%",
+            top: "10%",
             left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 800,
+            transform: "translate(-50%, 0)",
+            width: 700,
+            height: 1000,
             maxWidth: "100%",
-            maxHeight: "90%",
+            maxHeight: "90vh",  
             overflowY: "auto",
             backgroundColor: "white",
           }}
+          >
+
+        <button
+          onClick={closeModal}
+          style={{
+            position: "absolute",
+            top: "10px",          
+            right: "10px",         
+            backgroundColor: "white",
+            border: "none",
+            fontSize: "18px",       
+            cursor: "pointer",     
+          }}
         >
+          X
+        </button>
+
           <div>{children}</div>
-          <button onClick={closeModal}>Close</button>
+          
         </div>
       </div>
     );

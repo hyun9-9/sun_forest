@@ -21,4 +21,11 @@ public class MemberService {
                 .orElse(null);
         // 회원이 없으면 null 반환
     }
+
+    public String getMemberName(int id) {
+        System.out.println("[로그 이름]" + id);
+        return memberRepository.findById(id)
+                .map(Member::getName)
+                .orElse(null);
+    }
 }

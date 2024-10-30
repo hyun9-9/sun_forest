@@ -51,12 +51,17 @@
 /* 760px 보다 작을때 */
 @media screen and (max-width: 760px) {
     .profilebox {
-      width: 80px;
-      height: 80px;
+    width: 80px;
+    height: 80px;
     }
     .profile{
         left: 20%;
         width: 55px;
         height: 55px;
     }
-  }
+
+.modal {
+    background-color: white;
+}
+
+}
