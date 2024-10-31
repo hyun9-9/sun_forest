@@ -45,9 +45,27 @@ export default function Banner({memberId}) {
     
     }, [memberId]); 
 
-    
+    const handleSubmit = async (event) => {
+        event.preventDefault(); 
+        try {
+            const response = await fetch(`http://localhost:8080/api/members/${memberId}/name`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(nickname),
+            });
 
-    // const imagSize = isDesktop ? 100 : 60;
+            if (response.ok) {
+                console.log("닉네임이 성공적으로 저장되었습니다.");
+            } else {
+                console.error("닉네임 저장에 실패했습니다.");
+            }
+        } catch (error) {
+            console.error("닉네임 저장 중 오류 발생:", error);
+        }
+    };
+
 
     return (
         <div className='banner'>
@@ -75,15 +93,26 @@ export default function Banner({memberId}) {
 
     </div>
         <br />
-    <div>
-        닉네임 : {`${nickname}`}
-    </div>
+
+    <form onSubmit={handleSubmit}>
+            <label htmlFor="nickname">닉네임: </label>
+            <input
+                id="nickname"
+                type="text"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+                required
+            />
+            <button type="submit">저장</button>
+        </form>
 
     <br />
     <div>
         소개 
     </div>
 
+    {/* <button> 확인 </button>
+    <button> 취소 </button> */}
     </Modal>
     </div>
         </div>

@@ -28,4 +28,18 @@ public class MemberService {
                 .map(Member::getName)
                 .orElse(null);
     }
+
+    public boolean updateNickname(int id, String newNickname) {
+        Optional<Member> memberOptional = memberRepository.findById(id);
+        
+        if (memberOptional.isPresent()) {
+            Member member = memberOptional.get();
+            member.setName(newNickname); 
+            memberRepository.save(member); 
+            return true;
+        } else {
+            return false; 
+        }
+    }
+
 }
