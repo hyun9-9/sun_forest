@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sun_forest.sun_forest.service.MemberService;
 
@@ -73,5 +75,16 @@ public class MemberController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("memo not found");
         }
     }
+
+    @PutMapping("/{id}/img")
+    public ResponseEntity<String> updateProfileImage(@PathVariable int id, @RequestParam("file") MultipartFile file) {
+        boolean success = memberService.updateProfileImage(id, file);
+        if (success) {
+            return ResponseEntity.ok("이미지 업로드 성공");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("이미지 업로드 실패");
+        }
+    }
+
 }
 

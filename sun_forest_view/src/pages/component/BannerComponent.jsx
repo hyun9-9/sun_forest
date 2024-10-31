@@ -160,6 +160,7 @@ export default function Banner({ memberId }) {
 
             <div>
                 <Modal isOpen={isModalOpen} closeModal={closeModal}>
+                    
                     <form onSubmit={handleSubmit}>
                         <div style={{ border: '1px solid black', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <img
