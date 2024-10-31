@@ -1,61 +1,93 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import squirrellogo from "../../assets/img/squirrellogo.png"; 
 import { useMediaQuery } from 'react-responsive';
 import "../../assets/css/Main.css";
 import Modal from "./Modal";
 
-export default function Banner({memberId}) {
-
-    console.log('[로그]' , memberId);
+export default function Banner({ memberId }) {
+    console.log('[로그]', memberId);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [imag, setImag] = useState(null);
+    const [nickname, setNickname] = useState("");
+    const [memo, setMemo] = useState("");
+    const [file, setFile] = useState(null);
+    const [preview, setPreview] = useState(""); 
+    const [fileName, setFileName] = useState(""); // 파일 이름 상태 추가
 
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
-
-    const[imag, setImag] = useState(null);
-    const [nickname, setNickname] = useState(null); 
-    const [memo, setMemo] = useState(null); 
-
-    const isMobile = useMediaQuery({ query: '(max-width: 760px' });
+    const openModal = () => {
+        console.log('모달 열림:', fileName);
+        setIsModalOpen(true);
+        setFile(null); // 모달 열 때 파일 초기화
+        setFileName(""); // 파일 이름 초기화
+    };
+    
+    const closeModal = () => {
+        console.log('모달 닫힘, 파일 초기화됨:', fileName);
+        setIsModalOpen(false);
+        setFile(null);
+        setPreview(""); // 미리보기 초기화
+        setFileName(""); // 파일 이름 초기화
+        document.getElementById('file').value = ""; //파일이름 초기화
+    };
+    
+    const isMobile = useMediaQuery({ query: '(max-width: 760px)' });
     const isDesktop = useMediaQuery({ query: '(min-width: 761px)' });
 
     useEffect(() => {
-        console.log('[로그 1 ]', memberId); 
-        const fetchImage = async () => {
-        try {
-            const response = await fetch(`http://localhost:8080/api/members/${memberId}/img`);
-            console.log(response);
-            if (response.ok) {
-                const imagePath = await response.text(); 
-                console.log('응답', imagePath)
-                setImag(imagePath); 
+        const fetchProfileData = async () => {
+            try {
+                // 이미지 가져오기
+                const imageResponse = await fetch(`http://localhost:8080/api/members/${memberId}/img`);
+                if (imageResponse.ok) {
+                    const imagePath = await imageResponse.text();
+                    setImag(imagePath);
+                }
+
+                // 닉네임 가져오기
+                const nicknameResponse = await fetch(`http://localhost:8080/api/members/${memberId}/name`);
+                if (nicknameResponse.ok) {
+                    const nicknameData = await nicknameResponse.text();
+                    setNickname(nicknameData);
+                }
+
+                // 메모 가져오기
+                const memoResponse = await fetch(`http://localhost:8080/api/members/${memberId}/memo`);
+                if (memoResponse.ok) {
+                    const memoData = await memoResponse.text();
+                    setMemo(memoData);
+                }
+            } catch (error) {
+                console.error("프로필 데이터를 가져오는 중 오류 발생:", error);
             }
-            const nicknameResponse = await fetch(`http://localhost:8080/api/members/${memberId}/name`);
-            console.log('이름 있는지', nicknameResponse)
-            if (nicknameResponse.ok) {
-                const nicknameData = await nicknameResponse.text();
-                console.log('닉네임', nicknameData)
-                setNickname(nicknameData);
-            }
-            const memoResponse = await fetch(`http://localhost:8080/api/members/${memberId}/memo`);
-            console.log('메모 있는지', memoResponse)
-            if (memoResponse.ok) {
-                const memoData = await memoResponse.text();
-                console.log('닉네임', memoData)
-                setMemo(memoData);
-            }
-        } catch (error) {
-            console.error("프로필 데이터를 가져오는 중 오류 발생:", error);
-        }
         };
-            fetchImage();
-    
-    }, [memberId]); 
+        fetchProfileData();
+    }, [memberId]);
+
+    const handleFileChange = (event) => {
+        const selectedFile = event.target.files[0];
+        setFile(selectedFile);
+        
+        // 파일이 선택되면 미리보기 상태 업데이트
+        if (selectedFile) {
+            const fileReader = new FileReader();
+            fileReader.onloadend = () => {
+                console.log('파일 선택 1')
+                setPreview(fileReader.result); // 파일 미리보기
+            };
+            fileReader.readAsDataURL(selectedFile);
+            setFileName(selectedFile.name); // 선택된 파일 이름 업데이트
+        } else {
+            console.log('파일 초기화2')
+            setPreview(""); // 파일이 없을 경우 미리보기 초기화
+            setFileName(""); // 파일 이름 초기화
+        }
+    };
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
         try {
+            // 닉네임 업데이트
             const nickNameResponse = await fetch(`http://localhost:8080/api/members/${memberId}/name`, {
                 method: "PUT",
                 headers: {
@@ -70,6 +102,7 @@ export default function Banner({memberId}) {
                 console.error("닉네임 저장에 실패했습니다.");
             }
 
+            // 메모 업데이트
             const memoResponse = await fetch(`http://localhost:8080/api/members/${memberId}/memo`, {
                 method: "PUT",
                 headers: {
@@ -83,11 +116,28 @@ export default function Banner({memberId}) {
             } else {
                 console.error("메모 저장에 실패했습니다.");
             }
+
+            // 이미지 파일 업로드
+            if (file) {
+                const formData = new FormData();
+                formData.append("file", file); // 파일 추가
+
+                const imageUploadResponse = await fetch(`http://localhost:8080/api/members/${memberId}/img`, {
+                    method: "PUT",
+                    body: formData,
+                });
+
+                if (imageUploadResponse.ok) {
+                    console.log("이미지가 성공적으로 업로드되었습니다.");
+                } else {
+                    console.error("이미지 업로드에 실패했습니다.");
+                }
+            }
+
         } catch (error) {
-            console.error("메모 저장 중 오류 발생:", error);
+            console.error("정보 저장 중 오류 발생:", error);
         }
     };
-
 
     return (
         <div className='banner'>
@@ -96,11 +146,12 @@ export default function Banner({memberId}) {
             }
 
             {isMobile && 
-            <img className='mobile' alt="bannerPicture" src={squirrellogo} />}
+                <img className='mobile' alt="bannerPicture" src={squirrellogo} />
+            }
 
-<div className ='profilebox'>
+            <div className='profilebox'>
                 <img
-                    src={`http://localhost:8080${imag}`}
+                    src={preview || `http://localhost:8080${imag}`} // 미리보기 없으면 원래 이미지 사용
                     alt="Overlay"
                     className='profile'
                     onClick={openModal}
@@ -108,40 +159,47 @@ export default function Banner({memberId}) {
             </div>
 
             <div>
+                <Modal isOpen={isModalOpen} closeModal={closeModal}>
+                    <form onSubmit={handleSubmit}>
+                        <div style={{ border: '1px solid black', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <img
+                                src={preview || `http://localhost:8080${imag}`} 
+                                alt="Preview"
+                                style={{ maxHeight: '100%', maxWidth: '100%' }} 
+                            />
+                        </div>
+                        <br />
+                        <label htmlFor="file">프로필 사진 업로드: </label>
+                        <input
+                            id="file"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange} 
+                        />
+                        {fileName && <span>{fileName}</span>} 
+                        
+                        <label htmlFor="nickname">닉네임: </label>
+                        <input
+                            id="nickname"
+                            type="text"
+                            value={nickname}
+                            onChange={(e) => setNickname(e.target.value)}
+                            required
+                        />
 
-    <Modal isOpen={isModalOpen} closeModal={closeModal} >
-    <div style={{ border: '1px solid black', height: '300px'}}>
-                프로필 사진 들어갈 자리
-
-    </div>
-        <br />
-
-    <form onSubmit={handleSubmit}>
-            <label htmlFor="nickname">닉네임: </label>
-            <input
-                id="nickname"
-                type="text"
-                value={nickname}
-                onChange={(e) => setNickname(e.target.value)}
-                required
-            />
-
-            <label htmlFor="nickname">소개 : </label>
-            <input
-                id="memo"
-                type="text"
-                value={memo}
-                onChange={(e) => setMemo(e.target.value)}
-                required
-            />
-            <button type="submit">저장</button>
-        </form>
-
-
-    {/* <button> 확인 </button>
-    <button> 취소 </button> */}
-    </Modal>
-    </div>
+                        <label htmlFor="memo">소개: </label>
+                        <input
+                            id="memo"
+                            type="text"
+                            value={memo}
+                            onChange={(e) => setMemo(e.target.value)}
+                            required
+                        />
+                        <button type="submit">저장</button>
+                        <button type="button" onClick={closeModal} style={{ marginLeft: '10px' }}>취소</button> 
+                    </form>
+                </Modal>
+            </div>
         </div>
     );
 }
