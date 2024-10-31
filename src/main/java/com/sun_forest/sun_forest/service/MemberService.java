@@ -29,6 +29,13 @@ public class MemberService {
                 .orElse(null);
     }
 
+    public String getMemberMemo(int id) {
+        System.out.println("[로그 소개]" + id);
+        return memberRepository.findById(id)
+                .map(Member::getMemo)
+                .orElse(null);
+    }
+
     public boolean updateNickname(int id, String newNickname) {
         Optional<Member> memberOptional = memberRepository.findById(id);
         
@@ -42,4 +49,16 @@ public class MemberService {
         }
     }
 
+    public boolean updateMemo(int id, String newMemo) {
+        Optional<Member> memberOptional = memberRepository.findById(id);
+        
+        if (memberOptional.isPresent()) {
+            Member member = memberOptional.get();
+            member.setMemo(newMemo); 
+            memberRepository.save(member); 
+            return true;
+        } else {
+            return false; 
+        }
+    }
 }

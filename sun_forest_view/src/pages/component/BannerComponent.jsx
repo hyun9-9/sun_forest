@@ -15,6 +15,7 @@ export default function Banner({memberId}) {
 
     const[imag, setImag] = useState(null);
     const [nickname, setNickname] = useState(null); 
+    const [memo, setMemo] = useState(null); 
 
     const isMobile = useMediaQuery({ query: '(max-width: 760px' });
     const isDesktop = useMediaQuery({ query: '(min-width: 761px)' });
@@ -37,6 +38,13 @@ export default function Banner({memberId}) {
                 console.log('닉네임', nicknameData)
                 setNickname(nicknameData);
             }
+            const memoResponse = await fetch(`http://localhost:8080/api/members/${memberId}/memo`);
+            console.log('메모 있는지', memoResponse)
+            if (memoResponse.ok) {
+                const memoData = await memoResponse.text();
+                console.log('닉네임', memoData)
+                setMemo(memoData);
+            }
         } catch (error) {
             console.error("프로필 데이터를 가져오는 중 오류 발생:", error);
         }
@@ -48,7 +56,7 @@ export default function Banner({memberId}) {
     const handleSubmit = async (event) => {
         event.preventDefault(); 
         try {
-            const response = await fetch(`http://localhost:8080/api/members/${memberId}/name`, {
+            const nickNameResponse = await fetch(`http://localhost:8080/api/members/${memberId}/name`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -56,13 +64,27 @@ export default function Banner({memberId}) {
                 body: JSON.stringify(nickname),
             });
 
-            if (response.ok) {
+            if (nickNameResponse.ok) {
                 console.log("닉네임이 성공적으로 저장되었습니다.");
             } else {
                 console.error("닉네임 저장에 실패했습니다.");
             }
+
+            const memoResponse = await fetch(`http://localhost:8080/api/members/${memberId}/memo`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(memo),
+            });
+
+            if (memoResponse.ok) {
+                console.log("메모가 성공적으로 저장되었습니다.");
+            } else {
+                console.error("메모 저장에 실패했습니다.");
+            }
         } catch (error) {
-            console.error("닉네임 저장 중 오류 발생:", error);
+            console.error("메모 저장 중 오류 발생:", error);
         }
     };
 
@@ -103,13 +125,18 @@ export default function Banner({memberId}) {
                 onChange={(e) => setNickname(e.target.value)}
                 required
             />
+
+            <label htmlFor="nickname">소개 : </label>
+            <input
+                id="memo"
+                type="text"
+                value={memo}
+                onChange={(e) => setMemo(e.target.value)}
+                required
+            />
             <button type="submit">저장</button>
         </form>
 
-    <br />
-    <div>
-        소개 
-    </div>
 
     {/* <button> 확인 </button>
     <button> 취소 </button> */}

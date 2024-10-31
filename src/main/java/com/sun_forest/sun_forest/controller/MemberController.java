@@ -42,6 +42,17 @@ public class MemberController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/{id}/memo")
+    public ResponseEntity<String> getMemberMemo(@PathVariable int id) {
+        System.out.println("[로그 메모 요청]" + id);
+        String memoPath = memberService.getMemberMemo(id);
+        if (memoPath != null) {
+            return ResponseEntity.ok(memoPath);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     
     @PutMapping("/{id}/name")
     public ResponseEntity<String> updateNickname(@PathVariable int id, @RequestBody String newNickname) {
@@ -50,6 +61,16 @@ public class MemberController {
             return ResponseEntity.ok("successfully");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found");
+        }
+    }
+
+    @PutMapping("/{id}/memo")
+    public ResponseEntity<String> updateMemo(@PathVariable int id, @RequestBody String newMemo) {
+        boolean isUpdated = memberService.updateMemo(id, newMemo.replaceAll("\"", ""));
+        if (isUpdated) {
+            return ResponseEntity.ok("memo successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("memo not found");
         }
     }
 }
