@@ -31,6 +31,11 @@ export default function Banner({ memberId }) {
         document.getElementById('file').value = ""; //파일이름 초기화
     };
     
+    const closeSaveModal = () => {
+        console.log('모달 닫힘:', fileName);
+        setIsModalOpen(false);
+    };
+
     const isMobile = useMediaQuery({ query: '(max-width: 760px)' });
     const isDesktop = useMediaQuery({ query: '(min-width: 761px)' });
 
@@ -160,9 +165,9 @@ export default function Banner({ memberId }) {
 
             <div>
                 <Modal isOpen={isModalOpen} closeModal={closeModal}>
-                    
+
                     <form onSubmit={handleSubmit}>
-                        <div style={{ border: '1px solid black', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <div style={{  height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <img
                                 src={preview || `http://localhost:8080${imag}`} 
                                 alt="Preview"
@@ -177,7 +182,6 @@ export default function Banner({ memberId }) {
                             accept="image/*"
                             onChange={handleFileChange} 
                         />
-                        {fileName && <span>{fileName}</span>} 
                         
                         <label htmlFor="nickname">닉네임: </label>
                         <input
@@ -196,8 +200,10 @@ export default function Banner({ memberId }) {
                             onChange={(e) => setMemo(e.target.value)}
                             required
                         />
-                        <button type="submit">저장</button>
-                        <button type="button" onClick={closeModal} style={{ marginLeft: '10px' }}>취소</button> 
+                        <div className="button-group">
+                            <button type="submit" onClick={closeSaveModal}>저장</button>
+                            <button type="button" onClick={closeModal}>취소</button>
+                        </div>
                     </form>
                 </Modal>
             </div>

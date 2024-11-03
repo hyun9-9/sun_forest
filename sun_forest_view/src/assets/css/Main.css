@@ -1,18 +1,18 @@
 .banner {
     position: relative;
-    width:  100% ;
-    max-Width:  1440px ;
-    margin:  0 auto ;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
 .desk {
-    width:  100% ;
-    height:  auto ;
+    width: 100%;
+    height: auto;
 }
 
 .mobile {
-    width:  530px ;
-    height:  auto ;
+    width: 530px;
+    height: auto;
 }
 
 .profile {
@@ -24,6 +24,7 @@
     width: 110px;
     height: 110px;
     opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
 .profilebox {
@@ -43,25 +44,93 @@
     height: 150px;
 }
 
-.profile:hover{
+.profile:hover {
     opacity: 1;
     cursor: pointer;
 }
 
-/* 760px 보다 작을때 */
+/* 모달 스타일 */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+/* 폼 스타일 */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label {
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+form input[type="text"],
+form input[type="file"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* 버튼 그룹 스타일 */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* 버튼 사이 간격 */
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #f5b83e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #dfa738;
+}
+
+form button[type="button"] {
+    background-color: #ccc;
+}
+
+form button[type="button"]:hover {
+    background-color: #b3b3b3;
+}
+
+/* 모바일 스타일 */
 @media screen and (max-width: 760px) {
     .profilebox {
-    width: 80px;
-    height: 80px;
+        width: 80px;
+        height: 80px;
     }
-    .profile{
+    
+    .profile {
         left: 20%;
         width: 55px;
         height: 55px;
     }
 
-.modal {
-    background-color: white;
-}
-
+    .modal {
+        width: 90%;
+    }
 }
