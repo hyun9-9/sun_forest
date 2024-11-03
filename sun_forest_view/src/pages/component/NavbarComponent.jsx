@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import React from "react";
+import { Link } from 'react-router-dom';
 import '../../assets/css/nav.css'
 
 export default function Navbar() {
@@ -10,25 +11,27 @@ export default function Navbar() {
         <div class='child-nav my-nav'>
             <h4>마이페이지</h4>
             <hr/>
-            <div>북마크</div>
-            <div>마음 속 노트</div>
+            <Link to="/bookmark">북마크</Link>
+            <Link to="/note">마음 속 노트</Link>
         </div>
-        {/* <hr/> */}
+
         <div class='child-nav sunforest-nav'>
             <h4>햇살숲</h4>
             <hr/>
-            <div>비오는날</div>
-            <div>햇살가득</div>
+            <Link to="/rainy-day">비오는날</Link>
+            <Link to="/sunny-day">햇살가득</Link>
         </div>
-        {/* <hr/> */}
+
         <div class='child-nav helper-nav'>
             <h4>도우미</h4>
             <hr/>
-            <div>공지사항</div>
-            <div>문의사항</div>
+            <Link to="/notices">공지사항</Link>
+            <Link to="/inquiry">문의사항</Link>
         </div>
-        {/* <hr/> */}
-        <div class='child-nav shop-nav'></div>
+
+        <div class='child-nav shop-nav'>
+        <Link to="/shop">상점</Link>
+        </div>
     </div>
     <p> </p>
     </>

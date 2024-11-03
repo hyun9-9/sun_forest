@@ -4,6 +4,12 @@ import MyPage from "./pages/MyPage";
 import MainPage from "./pages/MainPage";
 import BannerComponent from "./pages/component/BannerComponent";
 import NavbarComponent from "./pages/component/NavbarComponent";
+import BookmarkPage from './pages/BookmarkPage';
+import NotePage from './pages/NotePage';
+// import RainyDayPage from './pages/RainyDayPage';
+// import SunnyDayPage from './pages/SunnyDayPage';
+// import NoticesPage from './pages/NoticesPage';
+// import InquiryPage from './pages/InquiryPage';   
 import './App.css'; 
 
 export default function Router() {
@@ -19,6 +25,12 @@ export default function Router() {
           <Routes>
             <Route exact path='/' element={<MainPage />} />
             <Route exact path='/my' element={<MyPage />} />
+            <Route path="/bookmark" element={<BookmarkPage />} />
+            <Route path="/note" element={<NotePage />} />
+            {/* <Route path="/rainy-day" element={<RainyDayPage />} /> */}
+            {/* <Route path="/sunny-day" element={<SunnyDayPage />} /> */}
+            {/* <Route path="/notices" element={<NoticesPage />} /> */}
+            {/* <Route path="/inquiry" element={<InquiryPage />} /> */}
           </Routes>
         </div>
       </div>
