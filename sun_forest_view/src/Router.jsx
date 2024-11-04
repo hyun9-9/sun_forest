@@ -13,7 +13,7 @@ import NotePage from './pages/NotePage';
 import './App.css'; 
 
 export default function Router() {
-  const memberId = 1;
+  const memberId = 2;
 
   return (
     <BrowserRouter>
