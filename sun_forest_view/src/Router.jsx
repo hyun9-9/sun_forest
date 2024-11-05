@@ -6,14 +6,14 @@ import BannerComponent from "./pages/component/BannerComponent";
 import NavbarComponent from "./pages/component/NavbarComponent";
 import BookmarkPage from './pages/BookmarkPage';
 import NotePage from './pages/NotePage';
-// import RainyDayPage from './pages/RainyDayPage';
+import RainyDayPage from './pages/RainyDayPage';
 // import SunnyDayPage from './pages/SunnyDayPage';
 // import NoticesPage from './pages/NoticesPage';
 // import InquiryPage from './pages/InquiryPage';   
 import './App.css'; 
 
 export default function Router() {
-  const memberId = 2;
+  const memberId = 1;
 
   return (
     <BrowserRouter>
@@ -27,7 +27,7 @@ export default function Router() {
             <Route exact path='/my' element={<MyPage />} />
             <Route path="/bookmark" element={<BookmarkPage />} />
             <Route path="/note" element={<NotePage />} />
-            {/* <Route path="/rainy-day" element={<RainyDayPage />} /> */}
+            <Route path="/rainy-day" element={<RainyDayPage />} />
             {/* <Route path="/sunny-day" element={<SunnyDayPage />} /> */}
             {/* <Route path="/notices" element={<NoticesPage />} /> */}
             {/* <Route path="/inquiry" element={<InquiryPage />} /> */}

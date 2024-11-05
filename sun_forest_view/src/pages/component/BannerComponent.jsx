@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import "../../assets/css/Main.css";
 import Modal from "./Modal";
 
-export default function Banner({ memberId }) {
+function Banner({ memberId }) {
     console.log('[로그]', memberId);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -210,3 +210,5 @@ export default function Banner({ memberId }) {
         </div>
     );
 }
+
+export default Banner;

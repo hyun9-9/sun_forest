@@ -14,6 +14,9 @@ class SunForestApplicationTests {
 
 	@Autowired
 	private MemberRepository memberRepository;
+	
+	// @Autowired
+	// private PostRepository postRepository;
 
 	@Test
 	void save() {
@@ -25,6 +28,15 @@ class SunForestApplicationTests {
 						.memo("sunforestMemo")
 						.build());
 	}
+
+	// @Test 
+	// void savePost() {
+	// 	postRepository.save(Post.builder()
+    //                     .memberId(1)
+    //                     .title("sunforestPost")
+    //                     .content("sunforestPostContent")
+    //                     .build());
+	// }
 
 	// @Test
 	// void select() {
