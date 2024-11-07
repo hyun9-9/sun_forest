@@ -18,5 +18,3 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             "LEFT JOIN reactions r ON p.id = r.post_Id", nativeQuery = true)
     List<PostWithMemberReactionProjection> findAllPostWithMemberReaction();
 }
-
-\
