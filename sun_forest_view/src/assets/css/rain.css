@@ -48,3 +48,55 @@ th {
 tr:hover {
     background-color: #f5f5f5;
 }
+
+/* rainWriter.css */
+.writebanner {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    margin: 20px 0;
+}
+
+.dropdownContainer {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.dropdownLabel {
+    font-weight: bold;
+    margin-right: 8px;
+    color: #333;
+}
+
+.styledDropdown {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.styledDropdown:hover, .styledDropdown:focus {
+    border-color: #ffffff;
+    background-color:#f5f5f5;
+}
+
+
+.dropdownContainer {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* 두 요소 사이의 간격을 설정 */
+}
+
+.styledDropdown {
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+input[type="text"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+}
