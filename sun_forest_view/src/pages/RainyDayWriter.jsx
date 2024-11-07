@@ -25,7 +25,7 @@ function RainyDayWriter() {
         try {
         
             // 카테고리
-            const categoryResponse = await fetch(`api/posts/category`, {
+            const categoryResponse = await fetch(`http://localhost:8080/api/posts/gubun`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
