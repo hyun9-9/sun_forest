@@ -28,4 +28,9 @@ public class Inout {
     @Column(nullable = false)
     private int num;
 
+    @Column(nullable = false)
+    private int member_Id;
+
+    @Column(nullable = false)
+    private int products_Id;
 }

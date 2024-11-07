@@ -26,13 +26,15 @@ public class Post {
     private String title;
 
     @Column(nullable = false)
+    private int member_Id;
+
+    @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
     private String gubun;
- 
+
     @Column(nullable = false)
     private int visit;
-
 
 }

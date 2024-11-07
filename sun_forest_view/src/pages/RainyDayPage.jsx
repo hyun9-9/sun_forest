@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "../assets/css/rain.css";
+import axios from 'axios';
 
 function RainyDayPage() {
+
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/posts/rainydays')
+            .then(response => {
+                setPosts(response.data);
+            })
+            .catch(error => {
+                console.error("fetch error", error);
+            });
+    }, []);
+    
     return (
         <>
             <div className='rainMainText'>
@@ -24,7 +38,16 @@ function RainyDayPage() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* 테이블 내용 */}
+                    {posts.map((post, index) => (
+                        <tr key={index}>
+                            <td>{post.postId}</td>
+                            <td>{post.title}</td>
+                            <td>{post.memberName}</td>
+                            <td>{new Date(post.regDate).toLocaleDateString()}</td>
+                            <td>{post.visit}</td>
+                            <td>{post.reactionNum}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </>

@@ -24,5 +24,11 @@ public class Reactions {
 
     @Column(nullable = false)
     private String gubun;
- 
+
+    @Column(nullable = false)
+    private int member_Id;
+
+    @Column(nullable = false)
+    private int post_Id;
+
 }

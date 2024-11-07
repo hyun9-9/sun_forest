@@ -28,4 +28,9 @@ public class Comment {
     @Column(nullable = true)
     private String replyId;
 
+    @Column(nullable = false)
+    private int member_Id;
+
+    @Column(nullable = false)
+    private int post_Id;
 }
