@@ -3,6 +3,7 @@ import squirrellogo from "../../assets/img/squirrellogo.png";
 import { useMediaQuery } from 'react-responsive';
 import "../../assets/css/Main.css";
 import Modal from "./Modal";
+import api from "../../lib/api.js";
 
 function Banner({ memberId }) {
     console.log('[로그]', memberId);
@@ -43,25 +44,24 @@ function Banner({ memberId }) {
         const fetchProfileData = async () => {
             try {
                 // 이미지 가져오기
-                const imageResponse = await fetch(`http://localhost:8080/api/members/${memberId}/img`);
-                if (imageResponse.ok) {
-                    const imagePath = await imageResponse.text();
-                    setImag(imagePath);
-                }
+                const imageResponse = await api.get(`/api/members/${memberId}`);
+                console.log(imageResponse);
+                setImag(imageResponse.img);
+                
 
                 // 닉네임 가져오기
-                const nicknameResponse = await fetch(`http://localhost:8080/api/members/${memberId}/name`);
-                if (nicknameResponse.ok) {
-                    const nicknameData = await nicknameResponse.text();
-                    setNickname(nicknameData);
-                }
+                // const nicknameResponse = await fetch(`http://localhost:8080/api/members/${memberId}/name`);
+                // if (nicknameResponse.ok) {
+                    // const nicknameData = await nicknameResponse.text();
+                    setNickname(imageResponse.name);
+                // }
 
                 // 메모 가져오기
-                const memoResponse = await fetch(`http://localhost:8080/api/members/${memberId}/memo`);
-                if (memoResponse.ok) {
-                    const memoData = await memoResponse.text();
-                    setMemo(memoData);
-                }
+                // const memoResponse = await fetch(`http://localhost:8080/api/members/${memberId}/memo`);
+                // if (memoResponse.ok) {
+                    // const memoData = await memoResponse.text();
+                    setMemo(imageResponse.memo);
+                // }
             } catch (error) {
                 console.error("프로필 데이터를 가져오는 중 오류 발생:", error);
             }
@@ -93,14 +93,8 @@ function Banner({ memberId }) {
         event.preventDefault();
         try {
             // 닉네임 업데이트
-            const nickNameResponse = await fetch(`http://localhost:8080/api/members/${memberId}/name`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(nickname),
-            });
-
+            const nickNameResponse = await api.put(`/api/members/${memberId}/name`, nickname);
+            console.log(nickNameResponse)
             if (nickNameResponse.ok) {
                 console.log("닉네임이 성공적으로 저장되었습니다.");
             } else {
@@ -156,7 +150,7 @@ function Banner({ memberId }) {
 
             <div className='profilebox'>
                 <img
-                    src={preview || `http://localhost:8080${imag}`} // 미리보기 없으면 원래 이미지 사용
+                    src={preview || `${api.BASE_URL+ imag}`} // 미리보기 없으면 원래 이미지 사용
                     alt="Overlay"
                     className='profile'
                     onClick={openModal}

@@ -1,5 +1,7 @@
 package com.sun_forest.sun_forest.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sun_forest.sun_forest.entity.member.Member;
 import com.sun_forest.sun_forest.service.MemberService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,11 +27,12 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
-    @GetMapping("/{id}/img")
-    public ResponseEntity<String> getMemberImage(@PathVariable int id) {
-        String imagePath = memberService.getMemberImage(id);
-        if (imagePath != null) {
-            return ResponseEntity.ok(imagePath);
+    @GetMapping("/{id}")
+    public ResponseEntity<Member> getMemberImage(@PathVariable int id) {
+        Member member = memberService.getMemberImage(id);
+
+        if (member  != null) {
+            return ResponseEntity.ok(member); // Member 객체 반환
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -57,10 +61,10 @@ public class MemberController {
     }
     
     @PutMapping("/{id}/name")
-    public ResponseEntity<String> updateNickname(@PathVariable int id, @RequestBody String newNickname) {
+    public ResponseEntity<?> updateNickname(@PathVariable int id, @RequestBody String newNickname) {
         boolean isUpdated = memberService.updateNickname(id, newNickname.replaceAll("\"", ""));
         if (isUpdated) {
-            return ResponseEntity.ok("successfully");
+            return ResponseEntity.ok(Map.of("ok", "successfully"));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found");
         }

@@ -8,6 +8,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,14 +23,12 @@ public class MemberService {
 
     private final String IMAGE_DIR = "src/main/resources/static/img";
 
-    public String getMemberImage(int id) {
-        System.out.println("[로그 서비스]" + id);
-        return memberRepository.findById(id)
-                .map(Member::getImg)
-                .orElse(null);
+    public Member getMemberImage(int id) {
+        System.out.println("[로그 서비스1]" + id);
+        return memberRepository.findById(id).orElse(null);
         // 회원이 없으면 null 반환
     }
-   
+
     public String getMemberName(int id) {
         System.out.println("[로그 이름]" + id);
         return memberRepository.findById(id)
