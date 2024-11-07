@@ -43,16 +43,18 @@ function NotePage() {
     localStorage.clear();
     setStickiesArray([]);
   };
-
   const openModal = (sticky) => {
     console.log('sticky',sticky);
     setSelectedSticky(sticky); // 선택된 스티키 설정
     setIsModalOpen(true); // 모달 열기
+
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedSticky(null); // 선택된 스티키 초기화
+      // 드래그 방지 해제
+
   };
 
   const handleDeleteConfirm = () => {
@@ -92,7 +94,7 @@ function NotePage() {
 
       {/* 모달 컴포넌트 */}
       {isModalOpen && (
-        <Modal isOpen={isModalOpen} closeModal={closeModal}>
+        <Modal isOpen={isModalOpen} closeModal={closeModal} selectedSticky={selectedSticky} >
             <h3>스티키 노트 내용</h3>
             {selectedSticky && (
                 <>

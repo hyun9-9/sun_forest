@@ -34,10 +34,10 @@ ul#stickies li::before {
   position: absolute;
   content: "";
   bottom: 15px;
-  right: 5px;
+  right: 2px;
   width: 90%;
-  top: 5%;
-  bottom: 55%;
+  top: 30%;
+  bottom: 53%;
   max-width: 300px;
   background: #777;
   box-shadow: 0 125px 10px #777;
@@ -69,25 +69,25 @@ ul#stickies li::after {
   line-height: 1.5;
   word-wrap: break-word;
 }
-/* Modal.css */
 .modal {
   z-index: 3;
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, 0);
+  position: fixed; /* 화면에 고정 */
+  top: 50%; /* 화면 세로 중앙 */
+  left: 50%; /* 화면 가로 중앙 */
+  transform: translate(-50%, -50%); /* 중앙 정렬 */
   width: 700px;
   max-width: 90%;
   height: 600px;
   max-height: 90vh;
   overflow-y: auto;
-  background-color: #fff;
+  background-color: #fff5e1;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   font-family: 'Courier New', Courier, monospace; /* 메모장 느낌을 위한 폰트 */
 }
+
 
 /* Modal Overlay */
 .modal-overlay {
@@ -111,14 +111,10 @@ ul#stickies li::after {
   cursor: pointer;
   padding: 5px 10px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Sticky Note Content */
 .sticky-note {
-  background-color: #fff5e1; /* 메모장 배경색 */
-  border: 1px solid #ffcc00; /* 메모장 테두리 색 */
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
