@@ -50,6 +50,8 @@ tr:hover {
 }
 
 /* rainWriter.css */
+
+
 .writebanner {
     font-size: 24px;
     font-weight: bold;
@@ -59,15 +61,10 @@ tr:hover {
 
 .dropdownContainer {
     display: flex;
-    align-items: center;
+    align-items: flex-start; 
     margin: 10px 0;
 }
 
-.dropdownLabel {
-    font-weight: bold;
-    margin-right: 8px;
-    color: #333;
-}
 
 .styledDropdown {
     padding: 10px;
@@ -88,7 +85,7 @@ tr:hover {
 .dropdownContainer {
     display: flex;
     align-items: center;
-    gap: 1.5rem; /* 두 요소 사이의 간격을 설정 */
+    gap: 1.5rem; 
 }
 
 .styledDropdown {
@@ -100,3 +97,34 @@ input[type="text"] {
     padding: 0.5rem;
     font-size: 1rem;
 }
+
+.ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+    min-height: 400px;
+    margin-bottom: 20px;
+}
+
+.buttonWrite {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.buttonWrite button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #ffc55a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    float: right;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.buttonWrite button:hover {
+    background-color: #ffd772; 
+}
+
+
