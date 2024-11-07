@@ -7,6 +7,7 @@ import NavbarComponent from "./pages/component/NavbarComponent";
 import BookmarkPage from './pages/BookmarkPage';
 import NotePage from './pages/NotePage';
 import RainyDayPage from './pages/RainyDayPage';
+import RainyDayWriter from './pages/RainyDayWriter';
 // import SunnyDayPage from './pages/SunnyDayPage';
 // import NoticesPage from './pages/NoticesPage';
 // import InquiryPage from './pages/InquiryPage';   
@@ -28,6 +29,7 @@ export default function Router() {
             <Route path="/bookmark" element={<BookmarkPage />} />
             <Route path="/note" element={<NotePage />} />
             <Route path="/rainy-day" element={<RainyDayPage />} />
+            <Route path="/write" element={<RainyDayWriter />} />
             {/* <Route path="/sunny-day" element={<SunnyDayPage />} /> */}
             {/* <Route path="/notices" element={<NoticesPage />} /> */}
             {/* <Route path="/inquiry" element={<InquiryPage />} /> */}
