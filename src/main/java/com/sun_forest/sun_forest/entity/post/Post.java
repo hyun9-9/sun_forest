@@ -20,21 +20,21 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int id;//pk
 
     @Column(nullable = false)
-    private String title;
+    private String title;//제목
 
     @Column(nullable = false)
-    private int member_Id;
+    private int member_Id;//유저 fk
 
     @Column(nullable = false)
-    private String content;
+    private String content;//내용
 
     @Column(nullable = false)
-    private String gubun;
+    private String gubun;//고민, ..?
 
     @Column(nullable = false)
-    private int visit;
+    private int visit;//방문수
 
 }

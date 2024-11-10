@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../assets/css/notePage.css";
 import Modal from './component/NotePageModal'; // 모달 컴포넌트 추가
 
+
 function NotePage() {
   const [stickiesArray, setStickiesArray] = useState([]);
   const [selectedSticky, setSelectedSticky] = useState(null); // 선택된 스티키 상태 추가
