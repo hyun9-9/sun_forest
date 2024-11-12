@@ -102,14 +102,8 @@ function Banner({ memberId }) {
             }
 
             // 메모 업데이트
-            const memoResponse = await fetch(`http://localhost:8080/api/members/${memberId}/memo`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(memo),
-            });
-
+            const memoResponse = await api.put(`/api/members/${memberId}/memo`,memo); 
+                
             if (memoResponse.ok) {
                 console.log("메모가 성공적으로 저장되었습니다.");
             } else {

@@ -4,9 +4,9 @@ public class PostDTO {
 
     private int id; // pk
     private String title; // 제목
-    private int member_Id; // 유저 fk
+    private int memberId; // 유저 fk
     private String content; // 내용
-    private String gubun; // 고민, ..?
+    private String gubun; // 구분
     private int visit; // 방문수
 
     private String search;
@@ -34,11 +34,11 @@ public class PostDTO {
     }
 
     public int getMemberId() {
-        return member_Id;
+        return memberId;
     }
 
     public void setMemberId(int member_Id) {
-        this.member_Id = member_Id;
+        this.memberId = member_Id;
     }
 
     public String getContent() {

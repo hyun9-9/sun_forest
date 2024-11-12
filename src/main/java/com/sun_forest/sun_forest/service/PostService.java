@@ -60,7 +60,7 @@ public class PostService {
     post.setContent(postDTO.getContent());
     post.setGubun(postDTO.getGubun());
     post.setVisit(postDTO.getVisit());
-
+    System.out.println("로그 DTO" + postDTO.getTitle());
     try {
       postRepository.save(post);
     } catch (DataIntegrityViolationException e) {

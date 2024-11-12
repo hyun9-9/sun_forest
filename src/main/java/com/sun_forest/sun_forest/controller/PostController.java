@@ -24,9 +24,11 @@ public class PostController {
 
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
     private PostService postService;
 
-    @GetMapping("/rainydays")//레파지토리 바로 부르는거 안좋데! 순서 : 뷰 <-> 컨트롤러 <-> 서비스 <-> 레파지토리 <-> 엔티티(db) 
+    @GetMapping("/rainydays") // 레파지토리 바로 부르는거 안좋데! 순서 : 뷰 <-> 컨트롤러 <-> 서비스 <-> 레파지토리 <-> 엔티티(db)
     public List<PostWithMemberReactionProjection> getAllPostsWithMemberReaction() {
         return postRepository.findAllPostWithMemberReaction();
     }
@@ -42,8 +44,8 @@ public class PostController {
     // }
     // }
 
-    //@RequestParam Long id <- ex) /myNotes?id=1 => 검색조건
-    //@PathVariable Long id <- ex) /myNotes/1 => 특정 리소스 조회
+    // @RequestParam Long id <- ex) /myNotes?id=1 => 검색조건
+    // @PathVariable Long id <- ex) /myNotes/1 => 특정 리소스 조회
     @GetMapping("/myNotes/{id}")
     public List<PostDTO> myNotes(@RequestBody PostDTO postDTO) {
         postDTO.setSearch("getPostById");
@@ -52,7 +54,21 @@ public class PostController {
 
     @PostMapping("/myNotes/save")
     public ResponseEntity<PostDTO> createMyNotes(@RequestBody PostDTO postDTO) {
-        PostDTO createdPost = postService.insert(postDTO);
-        return ResponseEntity.ok(createdPost);
+        System.out.println("로그 save" + postDTO.getGubun());
+        System.out.println("로그 save" + postDTO.getContent());
+        System.out.println("로그 save" + postDTO.getTitle());
+        try {
+            System.out.println("서비스 가는길 ");
+            PostDTO createdPost = postService.insert(postDTO);
+            System.out.println("로그 getGubun : " + postDTO.getGubun());
+            return ResponseEntity.ok(createdPost);
+        } catch (Exception e) {
+            System.out.println("에러 메시지: " + e.getMessage());
+
+            e.printStackTrace();
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
+
 }
