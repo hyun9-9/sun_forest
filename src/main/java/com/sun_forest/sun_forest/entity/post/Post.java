@@ -20,21 +20,20 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;//pk
+    private int id;
 
     @Column(nullable = false)
-    private String title;//제목
+    private String title;
+
+    @Column(nullable = false, name = "member_id") // DB 컬럼명은 "member_id"로 유지
+    private int memberId;
 
     @Column(nullable = false)
-    private int member_Id;//유저 fk
+    private String content;
 
     @Column(nullable = false)
-    private String content;//내용
+    private String gubun;
 
     @Column(nullable = false)
-    private String gubun;//고민, ..?
-
-    @Column(nullable = false)
-    private int visit;//방문수
-
+    private int visit;
 }

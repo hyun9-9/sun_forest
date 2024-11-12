@@ -37,7 +37,7 @@ class SunForestApplicationTests {
 	@Test
 	void savePost() {
 		postRepository.save(Post.builder()
-				.member_Id(1)
+				.memberId(1)
 				.title("sunforestPost")
 				.content("sunforestPostContent")
 				.visit(10)
