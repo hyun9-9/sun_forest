@@ -52,7 +52,10 @@ export async function post(endpoint, data) {
     },
     body: JSON.stringify(data),
   };
+  console.log('로그로그', endpoint, options);
+
   return await request(endpoint, options);
+  
 }
 
 /**

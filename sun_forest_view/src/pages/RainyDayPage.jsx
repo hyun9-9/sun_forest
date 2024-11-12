@@ -18,8 +18,12 @@ function RainyDayPage() {
             });
     }, []);
 
-    const handleWriteClick = () => {
+    const handleWriteClick = () => { //글 작성 
         navigate('/write'); 
+    };
+
+    const handleTitleClick = (postId) => { //글 세부내용
+        navigate(`/rainydays/${postId}`);
     };
     
     return (
@@ -47,7 +51,11 @@ function RainyDayPage() {
                     {posts.map((post, index) => (
                         <tr key={index}>
                             <td>{post.postId}</td>
-                            <td>{post.title}</td>
+                            <td>
+                                <button onClick={() => handleTitleClick(post.postId)}>
+                                    {post.title}
+                                </button>
+                            </td>
                             <td>{post.memberName}</td>
                             <td>{new Date(post.regDate).toLocaleDateString()}</td>
                             <td>{post.visit}</td>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import "../assets/css/rain.css";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import api from "../lib/api.js";
 
 function RainyDayWriter() {
     const navigate = useNavigate(); // 페이지 이동을 위한 navigate 훅
@@ -38,14 +39,15 @@ function RainyDayWriter() {
                 body: JSON.stringify(requestBody),
             });
 
-            console.log("Response Status:", categoryResponse.status);
+            // const categoryResponse = await api.post(`/api/posts/myNotes/save`, requestBody);
+
+            console.log("Response Status:", categoryResponse.ok);
 
             if (categoryResponse.ok) {
                 console.log("카테고리 성공적으로 저장되었습니다.");
                 const responseData = await categoryResponse.json(); // 서버 응답을 JSON으로 파싱
                 console.log("Response Data:", responseData);
 
-                // 저장 후 이전 페이지로 돌아가기
                 navigate(-1); // `-1`은 이전 페이지로 이동
             } else {
                 console.error("카테고리 저장에 실패했습니다.");

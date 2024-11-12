@@ -8,6 +8,7 @@ import BookmarkPage from './pages/BookmarkPage';
 import NotePage from './pages/NotePage';
 import RainyDayPage from './pages/RainyDayPage';
 import RainyDayWriter from './pages/RainyDayWriter';
+import RainyDayDetailPage from './pages/RainyDayDetailPage';
 // import SunnyDayPage from './pages/SunnyDayPage';
 // import NoticesPage from './pages/NoticesPage';
 // import InquiryPage from './pages/InquiryPage';   
@@ -30,6 +31,7 @@ export default function Router() {
             <Route path="/note" element={<NotePage />} />
             <Route path="/rainy-day" element={<RainyDayPage />} />
             <Route path="/write" element={<RainyDayWriter />} />
+            <Route path="/rainydays/:postId" element={<RainyDayDetailPage />} />
             {/* <Route path="/sunny-day" element={<SunnyDayPage />} /> */}
             {/* <Route path="/notices" element={<NoticesPage />} /> */}
             {/* <Route path="/inquiry" element={<InquiryPage />} /> */}
