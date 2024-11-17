@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.sun_forest.sun_forest.post.dto.PostDTO;
 import com.sun_forest.sun_forest.post.repository.PostRepository;
-import com.sun_forest.sun_forest.post.*;
 import com.sun_forest.sun_forest.post.entity.Post;
 
 @Service

@@ -15,7 +15,7 @@ async function request(endpoint, options) {
     if (!response.ok) {
       throw new Error(`Error: ${response.statusText}`);
     }
-
+    console.log('response',response);
     return await response.json();
   } catch (error) {
     console.log(error);

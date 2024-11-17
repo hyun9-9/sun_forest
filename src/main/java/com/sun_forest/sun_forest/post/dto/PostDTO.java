@@ -6,7 +6,7 @@ public class PostDTO {
     private String title; // 제목
     private int memberId; // 유저 fk
     private String content; // 내용
-    private String gubun; // 구분
+    private String gubun; // 구분  rainydays/sundays
     private int visit; // 방문수
 
     private String search;

@@ -45,7 +45,7 @@ function Banner({ memberId }) {
             try {
                 // 이미지 가져오기
                 const imageResponse = await api.get(`/api/members/${memberId}`);
-                console.log(imageResponse);
+                console.log('imageResponse',imageResponse);
                 setImag(imageResponse.img);
                 
 
