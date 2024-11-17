@@ -1,3 +1,8 @@
+.note_div{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 input#note_text {
   width: 350px;
 }

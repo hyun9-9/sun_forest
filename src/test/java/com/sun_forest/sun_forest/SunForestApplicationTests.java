@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.sun_forest.sun_forest.entity.post.Post;
-import com.sun_forest.sun_forest.entity.member.Member;
-import com.sun_forest.sun_forest.entity.reactions.Reactions;
-import com.sun_forest.sun_forest.repository.PostRepository;
-import com.sun_forest.sun_forest.repository.MemberRepository;
-import com.sun_forest.sun_forest.repository.ReactionsRepository;
+import com.sun_forest.sun_forest.member.repository.MemberRepository;
+import com.sun_forest.sun_forest.post.repository.PostRepository;
+import com.sun_forest.sun_forest.reactions.repository.ReactionsRepository;
+import com.sun_forest.sun_forest.member.entity.Member;
+import com.sun_forest.sun_forest.post.entity.Post;
+import com.sun_forest.sun_forest.reactions.entity.Reactions;
 
 @SpringBootTest
 class SunForestApplicationTests {

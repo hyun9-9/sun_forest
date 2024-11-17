@@ -9,7 +9,8 @@ function NotePage() {
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열기 상태
 
   useEffect(() => {
-    const storedStickies = JSON.parse(localStorage.getItem('stickiesArray')) || [];
+    // const storedStickies = JSON.parse(localStorage.getItem('stickiesArray')) || [];
+    const storedStickies = [];
     const loadedStickies = storedStickies.map(key => {
       const item = JSON.parse(localStorage.getItem(key));
       return { key, ...item };
@@ -18,19 +19,22 @@ function NotePage() {
   }, [selectedSticky]);
 
   const saveStickiesArray = (updatedArray) => {
-    localStorage.setItem('stickiesArray', JSON.stringify(updatedArray.map(sticky => sticky.key)));
+    // localStorage.setItem('stickiesArray', JSON.stringify(updatedArray.map(sticky => sticky.key)));
     setStickiesArray(updatedArray);
   };
 
   const createSticky = () => {
     const value = document.getElementById("note_text").value;
     const color = document.getElementById("note_color").value;
-    const key = `sticky_${Date.now()}`;
-    const newSticky = { key, value, color };
+    // const key = `sticky_${Date.now()}`;
+    // const newSticky = { key, value, color };
 
-    localStorage.setItem(key, JSON.stringify(newSticky));
-    const updatedArray = [...stickiesArray, newSticky];
-    saveStickiesArray(updatedArray);
+    // localStorage.setItem(key, JSON.stringify(newSticky));
+    // const updatedArray = [...stickiesArray, newSticky];
+    // saveStickiesArray(updatedArray);
+    
+
+
     document.getElementById("note_text").value = '';
   };
 
@@ -66,7 +70,7 @@ function NotePage() {
   };
 
   return (
-    <div>
+    <div calss="note_div">
       <form>
         <label htmlFor="note_color">색상:</label>
         <select id="note_color">
