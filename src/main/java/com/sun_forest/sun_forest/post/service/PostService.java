@@ -53,6 +53,24 @@ public class PostService {
     return pList;
   }
 
+  public PostDTO selectOne(PostDTO postDTO) {
+    Post post = postRepository.findById(postDTO.getId()).orElse(null);
+
+    if (post == null) {
+      throw new RuntimeException("게시물이 존재하지않음");
+    }
+
+    PostDTO result = new PostDTO();
+    result.setId(post.getId());
+    result.setTitle(post.getTitle());
+    result.setMemberId(post.getMemberId());
+    result.setContent(post.getContent());
+    result.setGubun(post.getGubun());
+    result.setVisit(post.getVisit());
+
+    return result;
+  }
+
   public PostDTO insert(PostDTO postDTO) {
     Post post = new Post();
     post.setTitle(postDTO.getTitle());

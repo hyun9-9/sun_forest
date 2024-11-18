@@ -128,3 +128,81 @@ input[type="text"] {
 }
 
 
+/* detailPage */
+
+/* 이미지 왼쪽 정렬 */
+.image-container {
+    display: flex;
+    align-items: center;  
+}
+
+/* 날짜와 조회, 공감을 한 줄로 */
+.post-stats {
+    font-size: 14px;
+    color: #555;
+    display: inline-block;
+    margin-top: 30px;  
+    margin-left: 15px; 
+    display: inline-block;
+}
+
+/* 날짜 */
+.datestyle {
+    margin-top: 30px;  
+    margin-left: -65px; 
+    font-size: 14px;
+    font-weight: normal;  
+    color: #555;
+}
+
+.image-nickname-container {
+    display: flex;
+    align-items: center;
+}
+
+/* 프로필 */
+img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;  
+}
+
+
+/* 닉네임 */
+.nicknamestyle {
+    margin-top: -5px;  
+}
+
+
+/* 카테고리이름 */
+.rainPostPage { 
+    font-size: 15px;
+    text-align: left;
+    color: orange;  
+    font-weight: normal;  
+    line-height: 1.0; 
+}
+
+/* 제목 */
+.rainPostTitle {
+    font-size: 18px; 
+    text-align: left;
+    font-weight: 500; 
+    line-height: 0.6; 
+}
+
+.post-rules {
+    background-color: #f9f9f9; 
+    padding: 15px; 
+    border: 1px solid #ddd;
+    font-size: 14px; 
+    color: #333; 
+    border-radius: 5px; 
+    line-height: 1.5;
+    font-weight: 400; 
+    text-align: left;
+    margin-top: 20px; 
+}
+

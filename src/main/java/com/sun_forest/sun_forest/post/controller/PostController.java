@@ -54,6 +54,14 @@ public class PostController {
         return ResponseEntity.ok(postDTOs);
     }
 
+    @GetMapping("/RainyPost/{id}") // 게시물 찾아오기 (목록에서 누르면)
+    public ResponseEntity<PostDTO> RainyPost(@PathVariable int id) {
+        PostDTO postDTO = new PostDTO();
+        postDTO.setId(id);
+        PostDTO selecPostDTO = postService.selectOne(postDTO);
+        return ResponseEntity.ok(selecPostDTO);
+    }
+
     @PostMapping("/myNotes/save")
     public ResponseEntity<PostDTO> createMyNotes(@RequestBody PostDTO postDTO) {
         System.out.println("로그 save" + postDTO.getGubun());
