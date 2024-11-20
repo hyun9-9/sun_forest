@@ -161,7 +161,7 @@ input[type="text"] {
 }
 
 /* 프로필 */
-img {
+.writerImg {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -193,6 +193,7 @@ img {
     line-height: 0.6; 
 }
 
+/* 비방금지 내용 박스 */
 .post-rules {
     background-color: #f9f9f9; 
     padding: 15px; 
@@ -201,8 +202,17 @@ img {
     color: #333; 
     border-radius: 5px; 
     line-height: 1.5;
-    font-weight: 400; 
-    text-align: left;
+    font-weight: bold;
+    text-align: center; 
     margin-top: 20px; 
+    margin-bottom: 20px; 
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.post-content {
+    margin-top: 20px;
+    padding-bottom: 10px; /* 줄과의 간격 */
+    border-bottom: 1px solid #ddd; /* 밑줄 */
+}

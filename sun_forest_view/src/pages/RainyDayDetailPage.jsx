@@ -55,7 +55,7 @@ function RainyDayDetailPage() {
         <h2 className='rainPostPage'> ▶ {post.gubun}</h2>
         <h2 className='rainPostTitle'>{post.title}</h2>
         <div className="image-nickname-container">
-            <img src={`http://localhost:8080${imag}`} alt="rainImage" />
+            <img className='writerImg' src={`http://localhost:8080${imag}`} alt="rainImage" />
             <p className='nicknamestyle'>{nickname}</p>
             <p className='datestyle'>{new Date(post.regDate).toLocaleDateString()}</p>
 
@@ -64,19 +64,30 @@ function RainyDayDetailPage() {
             <strong>공감:</strong> {post.reactionNum}
             </p>
         </div>
-
+    </div>
+</div>
         <div className='post-rules'>
         비방금지
         주제와 맞지 않는 글은 통보없이 삭제될 수 있습니다.
 
 
         </div>
-        
-    </div>
-</div>
 
-
-        <p>{post.content}</p>
+        {/* <p className="post-content" dangerouslySetInnerHTML={{ __html: post.content }} /> */}
+        <p className="post-content">
+            {post.content
+                .replace(/<p>/g, '\n')
+                .replace(/<\/p>/g, '')
+                .replace(/&nbsp;/g, ' ')
+                .split("\n")
+                .map((line, index) => (
+        <React.Fragment key={index}>
+                {line}
+        <br />
+        </React.Fragment>
+        ))}
+        </p>
+        <strong> 댓글 </strong>
         </>
     );
 }

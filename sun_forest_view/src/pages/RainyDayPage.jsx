@@ -48,21 +48,18 @@ function RainyDayPage() {
                     </tr>
                 </thead>
                 <tbody>
-                    {posts.map((post, index) => (
-                        <tr key={index}>
-                            <td>{post.postId}</td>
-                            <td>
-                                <button onClick={() => handleTitleClick(post.postId)}>
-                                    {post.title}
-                                </button>
-                            </td>
-                            <td>{post.memberName}</td>
-                            <td>{new Date(post.regDate).toLocaleDateString()}</td>
-                            <td>{post.visit}</td>
-                            <td>{post.reactionNum}</td>
-                        </tr>
-                    ))}
+                {posts.map((post, index) => (
+                    <tr key={index} onClick={() => handleTitleClick(post.postId)} style={{ cursor: "pointer" }}>
+                        <td>{post.postId}</td>
+                        <td>{post.title}</td>
+                        <td>{post.memberName}</td>
+                        <td>{new Date(post.regDate).toLocaleDateString()}</td>
+                        <td>{post.visit}</td>
+                        <td>{post.reactionNum}</td>
+                    </tr>
+                ))}
                 </tbody>
+
             </table>
         </>
     );

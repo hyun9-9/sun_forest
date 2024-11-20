@@ -64,13 +64,13 @@ public class PostController {
 
     @PostMapping("/myNotes/save")
     public ResponseEntity<PostDTO> createMyNotes(@RequestBody PostDTO postDTO) {
-        System.out.println("로그 save" + postDTO.getGubun());
-        System.out.println("로그 save" + postDTO.getContent());
-        System.out.println("로그 save" + postDTO.getTitle());
         try {
-            System.out.println("서비스 가는길 ");
+            String processedContent = postDTO.getContent()
+                    .replace("&nbsp;", " ")
+                    .replace("\n", "<br>");
+            postDTO.setContent(processedContent);
+
             PostDTO createdPost = postService.insert(postDTO);
-            System.out.println("로그 getGubun : " + postDTO.getGubun());
             return ResponseEntity.ok(createdPost);
         } catch (Exception e) {
             System.out.println("에러 메시지: " + e.getMessage());
