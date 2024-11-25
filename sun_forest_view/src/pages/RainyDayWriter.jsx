@@ -60,7 +60,7 @@ function RainyDayWriter() {
     return (
         <>
             <div className='writebanner'> 글 작성 </div>
-            <form onSubmit={handleSubmit}>
+            <form className='writeForm' onSubmit={handleSubmit}>
                 <div className='dropdownContainer'>
                     <select 
                         id="categoryDropdown" 

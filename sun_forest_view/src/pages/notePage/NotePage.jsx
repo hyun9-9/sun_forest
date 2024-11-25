@@ -16,7 +16,7 @@ function NotePage() {
 
   async function fetchData() {
     const ref = await api.get('/api/posts/myNotes/1');
-    console.log('ref', ref);
+    // console.log('ref', ref);
 
   // 컬러 추가
   const stickiesRef = ref.map(item => ({
@@ -26,27 +26,34 @@ function NotePage() {
 
     // 필요한 경우, setStickiesArray 호출하여 상태 업데이트
     setStickiesArray(stickiesRef);
-}
+  }
 
-  const createSticky = async () => {
+  // const createSticky = async () => {
     
-    const content = document.getElementById("note_text").value;
-    const title = '나야 노트';
-    const gubun = 'sundays';
+  //   const content = document.getElementById("note_text").value;
+  //   const title = '나야 노트';
+  //   const gubun = 'sundays';
 
-    let data = {title, memberId:1, content, gubun}
+  //   let data = {title, memberId:1, content, gubun}
 
-    const ref = await api.post('/api/posts/myNotes/save',data);
-    console.log('ref', ref);
-    document.getElementById("note_text").value = '';
-    fetchData();
-  };
+  //   const ref = await api.post('/api/posts/myNotes/save',data);
+  //   // console.log('ref', ref);
+  //   if(ref){      
+  //     document.getElementById("note_text").value = '';
+  //     fetchData();
+  //   }
+  // };
 
-  const deleteSticky = (key) => {
-  };
+  // const deleteSticky = async (selectedSticky) => {
+  //   console.log('deleteSticky',selectedSticky);
+  //   const ref = await api.post('/api/posts/deletePost',selectedSticky);
+  //   console.log('deleteref', ref);
+  //   if(ref){
+  //     fetchData();
+  //   }
+  // };
 
   const openModal = (sticky) => {
-    console.log('sticky',sticky);
     setSelectedSticky(sticky); // 선택된 스티키 설정
     setIsModalOpen(true); // 모달 열기
 
@@ -55,32 +62,33 @@ function NotePage() {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedSticky(null); // 선택된 스티키 초기화
+    fetchData();
       // 드래그 방지 해제
 
   };
 
-  const handleDeleteConfirm = () => {
-    if (selectedSticky) {
-      // deleteSticky(selectedSticky.key); // 스티키 삭제
-      closeModal(); // 모달 닫기
-    }
-  };
+  // const handleDeleteConfirm = () => {
+  //   if (selectedSticky) {
+  //     deleteSticky(selectedSticky); // 스티키 삭제
+  //     closeModal(); // 모달 닫기
+  //   }
+  // };
 
   return (
     <div calss="note_div">
-      <form>
-        <label htmlFor="note_color">색상:</label>
+      {/* <form> */}
+        {/*<label htmlFor="note_color">색상:</label>
         <select id="note_color">
           <option value="LightGoldenRodYellow">노란색</option>
           <option value="PaleGreen">녹색</option>
           <option value="LightPink">분홍</option>
           <option value="LightBlue">파란색</option>
-        </select>
-        <label htmlFor="note_text">내용:</label>
+        </select>*/}
+        {/* <label htmlFor="note_text">내용:</label>
         <input type="text" id="note_text" placeholder="Write your note here" />
         <button type="button" onClick={createSticky}>스티키 노트 추가</button>
-      </form>
-
+      </form> */}
+      <button type="button" onClick={() => openModal()}>생성</button>
       <ul id="stickies">
         {stickiesArray.map(sticky => (
           <li 
@@ -96,7 +104,7 @@ function NotePage() {
 
       {/* 모달 컴포넌트 */}
       {isModalOpen && (
-        <NotePageModal isOpen={isModalOpen} closeModal={closeModal} selectedSticky={selectedSticky} deleteSticky={handleDeleteConfirm} />
+        <NotePageModal isOpen={isModalOpen} closeModal={closeModal} selectedSticky={selectedSticky}/>
       )}
     </div>
   );

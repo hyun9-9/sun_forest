@@ -88,4 +88,14 @@ public class PostService {
     }
     return postDTO;
   }
+
+
+  public boolean delete(PostDTO postDTO) {
+    try {
+      postRepository.deleteById(postDTO.getId());
+    } catch (Exception e) {
+      throw new RuntimeException("알 수 없는 오류가 발생했습니다: " + e.getMessage());
+    }
+    return true;
+  }
 }

@@ -80,5 +80,22 @@ public class PostController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+    @PostMapping("/deletePost")
+    public ResponseEntity<PostDTO> deletePost(@RequestBody PostDTO postDTO) {
+        System.out.println("로그 delete" + postDTO.getId());
+        try {
+            System.out.println("서비스 가는길 ");
+            boolean flag = postService.delete(postDTO);
+            if (flag) {
+                return ResponseEntity.ok(postDTO);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            System.out.println("에러 메시지: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 
 }

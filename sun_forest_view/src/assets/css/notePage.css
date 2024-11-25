@@ -123,3 +123,7 @@ ul#stickies li::after {
   padding: 10px;
   border-radius: 5px;
 }
+
+.mynoteForm{
+  align-items: normal;
+}
