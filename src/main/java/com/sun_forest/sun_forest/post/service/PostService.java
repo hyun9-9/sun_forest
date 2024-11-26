@@ -1,6 +1,7 @@
 package com.sun_forest.sun_forest.post.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +34,7 @@ public class PostService {
             dto.setContent(post.getContent());
             dto.setGubun(post.getGubun());
             dto.setVisit(post.getVisit());
+            dto.setRegdate(post.getRegdate());
             return dto;
           })
           .collect(Collectors.toList());
@@ -46,6 +48,7 @@ public class PostService {
             dto.setContent(post.getContent());
             dto.setGubun(post.getGubun());
             dto.setVisit(post.getVisit());
+            dto.setRegdate(post.getRegdate());
             return dto;
           })
           .collect(Collectors.toList());
@@ -67,6 +70,7 @@ public class PostService {
     result.setContent(post.getContent());
     result.setGubun(post.getGubun());
     result.setVisit(post.getVisit());
+    result.setRegdate(post.getRegdate());
 
     return result;
   }
@@ -78,7 +82,9 @@ public class PostService {
     post.setContent(postDTO.getContent());
     post.setGubun(postDTO.getGubun());
     post.setVisit(postDTO.getVisit());
-    System.out.println("로그 DTO" + postDTO.getTitle());
+    post.setRegdate(new Date());
+    
+    System.out.println("로그 DTO " + post);
     try {
       postRepository.save(post);
     } catch (DataIntegrityViolationException e) {
