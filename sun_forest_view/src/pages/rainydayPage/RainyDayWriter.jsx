@@ -25,8 +25,9 @@ function RainyDayWriter() {
         gubun: category,
         title,
         content,
-        memberId: localStorage.getItem("loginId"), 
     };
+
+    console.log('requestBody',requestBody);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
