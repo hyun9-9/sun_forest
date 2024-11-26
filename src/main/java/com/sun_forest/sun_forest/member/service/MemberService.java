@@ -8,18 +8,24 @@ import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sun_forest.sun_forest.member.repository.MemberRepository;
+import com.sun_forest.sun_forest.post.dto.PostDTO;
+import com.sun_forest.sun_forest.post.entity.Post;
+import com.sun_forest.sun_forest.member.dto.MemberDTO;
 import com.sun_forest.sun_forest.member.entity.Member;
 
 @Service
 public class MemberService {
 
+    private final MemberRepository memberRepository;
+
     @Autowired
-    private MemberRepository memberRepository;
+    private MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    };
 
     private final String IMAGE_DIR = "src/main/resources/static/img";
 
@@ -45,27 +51,27 @@ public class MemberService {
 
     public boolean updateNickname(int id, String newNickname) {
         Optional<Member> memberOptional = memberRepository.findById(id);
-        
+
         if (memberOptional.isPresent()) {
             Member member = memberOptional.get();
-            member.setName(newNickname); 
-            memberRepository.save(member); 
+            member.setName(newNickname);
+            memberRepository.save(member);
             return true;
         } else {
-            return false; 
+            return false;
         }
     }
 
     public boolean updateMemo(int id, String newMemo) {
         Optional<Member> memberOptional = memberRepository.findById(id);
-        
+
         if (memberOptional.isPresent()) {
             Member member = memberOptional.get();
-            member.setMemo(newMemo); 
-            memberRepository.save(member); 
+            member.setMemo(newMemo);
+            memberRepository.save(member);
             return true;
         } else {
-            return false; 
+            return false;
         }
     }
 
@@ -76,7 +82,7 @@ public class MemberService {
             try {
                 // 파일 저장 경로 설정
                 Path imagePath = Paths.get(IMAGE_DIR, file.getOriginalFilename());
-                
+
                 // 이미지 파일 저장 (파일 덮어씀)
                 Files.copy(file.getInputStream(), imagePath, StandardCopyOption.REPLACE_EXISTING);
 
@@ -90,7 +96,27 @@ public class MemberService {
                 e.printStackTrace();
                 return false;
             }
-        } 
+        }
         return false;
     }
+
+    // 로그인
+    public MemberDTO login(MemberDTO memberDTO) {
+
+        Member member = memberRepository.findByloginId(memberDTO.getLoginId()).orElse(null);
+
+        if (member == null) {
+            throw new RuntimeException("아이디가 존재하지 않음");
+        }
+
+        if (!member.getPassword().equals(memberDTO.getPassword())) {
+            throw new RuntimeException("비밀번호가 일치하지 않음");
+        }
+
+        MemberDTO result = new MemberDTO();
+        result.setLoginId(member.getLoginId());
+
+        return result;
+    }
+
 }

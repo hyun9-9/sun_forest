@@ -30,7 +30,7 @@ class SunForestApplicationTests {
 	@Test
 	void save() {
 		memberRepository.save(Member.builder()
-				.memberId("sunforest")
+				.loginId("sunforest")
 				.name("sunforest")
 				.password("sunforest")
 				.img("/img/person.png")

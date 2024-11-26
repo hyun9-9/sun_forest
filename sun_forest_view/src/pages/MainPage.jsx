@@ -6,7 +6,7 @@ export default function main() {
 
 
     return (
-    <></>
+    <>메인페이지</>
     );
 }
 

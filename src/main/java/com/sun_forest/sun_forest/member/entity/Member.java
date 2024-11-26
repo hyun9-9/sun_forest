@@ -20,24 +20,24 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int id; // PK
+
+    @Column(nullable = false, unique = true)
+    private String loginId; // 아이디
 
     @Column(nullable = false)
-    private String memberId;
+    private String name; // 닉네임
 
     @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String password;
+    private String password; // 비밀번호
 
     @Column(nullable = true)
-    private int sunCoin;
+    private int sunCoin; // 코인
 
     @Column(nullable = false)
-    private String img;
+    private String img; // 이미지(프사)
 
     @Column(nullable = false)
-    private String memo;
+    private String memo; // 소개(메모)
 
 }

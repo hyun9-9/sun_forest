@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sun_forest.sun_forest.member.dto.MemberDTO;
 import com.sun_forest.sun_forest.member.entity.Member;
 import com.sun_forest.sun_forest.member.service.MemberService;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("/api/members")
@@ -30,7 +31,7 @@ public class MemberController {
     public ResponseEntity<Member> getMemberImage(@PathVariable int id) {
         Member member = memberService.getMemberImage(id);
 
-        if (member  != null) {
+        if (member != null) {
             return ResponseEntity.ok(member); // Member 객체 반환
         } else {
             return ResponseEntity.notFound().build();
@@ -58,7 +59,7 @@ public class MemberController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+
     @PutMapping("/{id}/name")
     public ResponseEntity<?> updateNickname(@PathVariable int id, @RequestBody String newNickname) {
         boolean isUpdated = memberService.updateNickname(id, newNickname.replaceAll("\"", ""));
@@ -89,5 +90,13 @@ public class MemberController {
         }
     }
 
-}
+    @PostMapping("/login")
+    public ResponseEntity<MemberDTO> login(@RequestBody MemberDTO memberDTO) {
 
+        MemberDTO result = memberService.login(memberDTO);
+
+        return ResponseEntity.ok(result);
+        // 로그인 성공시 200 반환
+    }
+
+}

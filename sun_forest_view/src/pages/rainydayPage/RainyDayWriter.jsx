@@ -20,11 +20,12 @@ function RainyDayWriter() {
         setTitle(e.target.value); 
     };
 
+
     const requestBody = {
         gubun: category,
         title,
         content,
-        memberId: localStorage.getItem("memberId"), 
+        memberId: localStorage.getItem("loginId"), 
     };
 
     const handleSubmit = async (event) => {
