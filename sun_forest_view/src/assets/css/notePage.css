@@ -31,6 +31,7 @@ ul#stickies {
   position: relative;
   transition: transform 0.5s ease, border-radius 0.2s ease; 
   cursor: pointer;
+  
 }
 
 /* Top shading effect */
@@ -74,6 +75,16 @@ ul#stickies li::after {
   line-height: 1.5;
   word-wrap: break-word;
 }
+.sticky_content_div{
+  display: flex;
+}
+.sticky_content{
+  overflow: hidden;
+  height: 150px;
+  width: 200px;
+}
+
+
 .modal {
   z-index: 3;
   position: fixed; /* 화면에 고정 */
@@ -155,9 +166,10 @@ ul#stickies li::after {
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   z-index: 1001;
-  max-width: 400px;
+  max-width: 700px;
   width: 90%;
   display: flex;
+  justify-content: center;
 }
 
 .close-button {
@@ -195,6 +207,14 @@ ul#stickies li::after {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 1;
+}
+.title_div{
+  width: 100%;
+  display: flex;
+}
+.title_div label {
+  margin: auto 5px;
 }
 
 .input-field,
@@ -208,7 +228,8 @@ ul#stickies li::after {
 
 .textarea-field {
   resize: none;
-  height: 100px;
+  /* height: 100px; */
+  flex:1;
 }
 
 .button-group {

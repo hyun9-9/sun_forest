@@ -96,8 +96,19 @@ function NotePage() {
             style={{ backgroundColor: sticky.color }}
             onClick={() => openModal(sticky)} // 클릭 시 모달 열기
           >
-            <div>{sticky.title}</div>
-            <div>{sticky.content}</div>
+            <div>제목 : {sticky.title}</div>
+            <div className='sticky_content_div'>            
+              <p className='sticky_content'>
+              {sticky.content
+                      .replace(/<p>/g, '\n')
+                      .replace(/<\/p>/g, '')
+                      .replace(/&nbsp;/g, ' ')
+                      .split("\n")
+                      .map((line, index) => (
+              <React.Fragment key={index}>{line}<br /></React.Fragment>
+              ))}
+              </p>
+            </div>
           </li>
         ))}
       </ul>

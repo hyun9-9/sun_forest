@@ -22,26 +22,27 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int id; // pk
 
     @Column(nullable = false)
-    private String title;
+    private String title; // 제목
 
     @Column(nullable = false, name = "member_id") // DB 컬럼명은 "member_id"로 유지
-    private int memberId;
+    private int memberId; // 유저 fk
 
     @Column(nullable = false)
-    private String content;
+    private String content; // 내용
 
     @Column(nullable = false)
-    private String gubun;// rainydays||sundays||mynote||notice||qna
+    private String gubun;// 구분 rainydays||sundays||mynote||notice||qna
 
     @Column(nullable = false)
-    private int visit;
+    private int visit; // 방문수
 
     @Column(nullable = false)
-    private Date regdate;
+    private Date regdate; // 글 쓴 날짜 (java.util.Date)
 
-
+    @Column(nullable = false)
+    private boolean view; // 공개 여부
 }
 

@@ -35,6 +35,7 @@ public class PostService {
             dto.setGubun(post.getGubun());
             dto.setVisit(post.getVisit());
             dto.setRegdate(post.getRegdate());
+            dto.setView(post.isView());
             return dto;
           })
           .collect(Collectors.toList());
@@ -49,6 +50,7 @@ public class PostService {
             dto.setGubun(post.getGubun());
             dto.setVisit(post.getVisit());
             dto.setRegdate(post.getRegdate());
+            dto.setView(post.isView());
             return dto;
           })
           .collect(Collectors.toList());
@@ -71,7 +73,7 @@ public class PostService {
     result.setGubun(post.getGubun());
     result.setVisit(post.getVisit());
     result.setRegdate(post.getRegdate());
-
+    result.setView(post.isView());
     return result;
   }
 
@@ -83,7 +85,8 @@ public class PostService {
     post.setGubun(postDTO.getGubun());
     post.setVisit(postDTO.getVisit());
     post.setRegdate(new Date());
-    
+    post.setView(postDTO.isView()|| true);
+
     System.out.println("로그 DTO " + post);
     try {
       postRepository.save(post);
