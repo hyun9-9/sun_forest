@@ -1,0 +1,54 @@
+.login-container {
+    width: 400px; /* 컨테이너 너비 */
+    margin: 100px auto;
+    padding: 30px; /* 여백을 더 여유롭게 */
+    border: 1px solid #ccc;
+    border-radius: 10px; /* 모서리를 부드럽게 */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* 그림자 강조 */
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    margin-bottom: 30px; /* 제목과 폼 사이 간격 더 크게 */
+    color: #333;
+    font-size: 1.8rem; /* 글자 크기 확대 */
+}
+
+.form-group {
+    margin-bottom: 20px; /* 입력 필드 간격 증가 */
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px; /* 라벨과 입력 필드 간격 확대 */
+    font-weight: bold;
+    font-size: 1.2rem; /* 글자 크기 확대 */
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 15px; /* 입력 필드 내부 여백 증가 */
+    margin: 8px 0 15px; /* 간격 조정 */
+    border: 1px solid #ccc;
+    border-radius: 6px; /* 모서리 조금 더 부드럽게 */
+    font-size: 1rem; /* 글자 크기 확대 */
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px; /* 버튼 크기 확대 */
+    background-color: #ffd23d;
+    color: white;
+    font-size: 1.2rem; /* 버튼 글자 크기 확대 */
+    border: none;
+    border-radius: 6px; /* 모서리 둥글게 */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 마우스 올릴 때 부드러운 전환 효과 */
+}
+
+.login-button:hover {
+    background-color: #ffc35b; /* 호버 시 조금 더 밝은 색 */
+}

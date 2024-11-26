@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "../assets/css/rain.css";
+import "../../assets/css/rain.css";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import api from "../lib/api.js";
 
 function RainyDayWriter() {
     const navigate = useNavigate(); // 페이지 이동을 위한 navigate 훅

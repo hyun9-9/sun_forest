@@ -1,5 +1,7 @@
 package com.sun_forest.sun_forest.post.dto;
 
+import java.util.Date;
+
 public class PostDTO {
 
     private int id; // pk
@@ -8,6 +10,7 @@ public class PostDTO {
     private String content; // 내용
     private String gubun; // 구분  rainydays||sundays||mynote||notice||qna
     private int visit; // 방문수
+    private Date regdate; // 글 쓴 날짜 (java.util.Date)
 
     private String search;
 
@@ -37,8 +40,8 @@ public class PostDTO {
         return memberId;
     }
 
-    public void setMemberId(int member_Id) {
-        this.memberId = member_Id;
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
     }
 
     public String getContent() {
@@ -71,5 +74,13 @@ public class PostDTO {
 
     public void setSearch(String search) {
         this.search = search;
+    }
+
+    public Date getRegdate() {
+        return regdate;
+    }
+
+    public void setRegdate(Date regdate) {
+        this.regdate = regdate;
     }
 }

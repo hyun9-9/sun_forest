@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "../assets/css/rain.css";
+import "../../assets/css/rain.css";
 import axios from 'axios';
 
 function RainyDayPage() {
@@ -11,7 +11,9 @@ function RainyDayPage() {
     useEffect(() => {
         axios.get('http://localhost:8080/api/posts/rainydays')
             .then(response => {
-                setPosts(response.data);
+                // 오름차순 정렬
+                const sortedPosts = response.data.sort((a, b) => a.postId - b.postId);
+                setPosts(sortedPosts);
             })
             .catch(error => {
                 console.error("fetch error", error);
@@ -59,7 +61,6 @@ function RainyDayPage() {
                     </tr>
                 ))}
                 </tbody>
-
             </table>
         </>
     );

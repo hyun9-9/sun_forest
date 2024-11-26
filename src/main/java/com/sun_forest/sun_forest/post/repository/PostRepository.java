@@ -19,5 +19,5 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             "LEFT JOIN reactions r ON p.id = r.post_Id", nativeQuery = true)
     List<PostWithMemberReactionProjection> findAllPostWithMemberReaction();
 
-    List<Post> findByMemberId(int memberId); // Post 엔티티의 필드명이 memberId이면, 이렇게 변경
+    List<Post> findByMemberId(int memberId);
 }

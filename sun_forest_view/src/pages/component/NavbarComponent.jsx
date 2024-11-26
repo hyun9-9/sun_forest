@@ -30,7 +30,16 @@ export default function Navbar() {
         </div>
 
         <div className='child-nav shop-nav'>
+        <hr/>
         <Link to="/shop">상점</Link>
+        </div>
+
+        
+        <div className='child-nav login-nav'>
+        <hr/>
+            <Link to="/login" >로그인</Link>
+            
+            
         </div>
     </div>
     <p> </p>
