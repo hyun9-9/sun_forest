@@ -32,7 +32,7 @@ public class Post {
     private String content;
 
     @Column(nullable = false)
-    private String gubun;
+    private String gubun;// rainydays||sundays||mynote||notice||qna
 
     @Column(nullable = false)
     private int visit;

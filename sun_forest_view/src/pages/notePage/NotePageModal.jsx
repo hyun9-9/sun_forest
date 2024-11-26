@@ -6,65 +6,59 @@ function Modal({ isOpen, closeModal, selectedSticky }) {
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
 
-  const deleteSticky = async (selectedSticky) => {
-    console.log('deleteSticky', selectedSticky);
-    const ref = await api.post('/api/posts/deletePost', selectedSticky);
-    console.log('deleteref', ref);
+  const deleteSticky = async () => {
+    await api.post('/api/posts/deletePost', selectedSticky);
+    closeModal();
   };
 
   const createSticky = async () => {
-    // const newSticky = { content: newContent, color: 'defaultColor' }; // Set color or other default values if needed
-    const newSticky = {title, memberId:1, content, gubun:'sundays'};
-    const ref = await api.post('/api/posts/myNotes/save', newSticky);
-    console.log('createSticky ref', ref);
-    closeModal(); // Close modal after creation
-  };
-
-  const handleDeleteConfirm = () => {
-    if (selectedSticky) {
-      deleteSticky(selectedSticky);
-      closeModal();
-    }
+    const newSticky = { title, memberId: 1, content, gubun: 'mynote' };
+    await api.post('/api/posts/myNotes/save', newSticky);
+    closeModal();
   };
 
   return (
-    <div style={{ display: isOpen ? "block" : "none" }}>
-      <div className="modal-overlay"></div>
-      <div className="modal" style={{ backgroundColor: selectedSticky ? selectedSticky.color : '#fff' }}>
+    <div style={{ display: isOpen ? "block" : "none" }} className="modal-wrapper">
+      <div className="modal-overlay" onClick={closeModal}></div>
+      <div className="modal-content modal" style={{ backgroundColor: selectedSticky ? selectedSticky.color : '#fff' }}>
         <button className="close-button" onClick={closeModal}>
-          X
+          &times;
         </button>
-        
+
         {selectedSticky ? (
-          // Existing sticky note content and delete options
-          <div>
-            <h3>스티키 노트 내용</h3>
+          <div className="sticky-display">
+            <h3 className="sticky-title">{selectedSticky.title}</h3>
             <div className="sticky-note">
               <p>{selectedSticky.content}</p>
             </div>
-            <button onClick={handleDeleteConfirm}>삭제</button>
-            <button onClick={closeModal}>취소</button>
+            <div className="button-group">
+              <button className="delete-button" onClick={deleteSticky}>삭제</button>
+              <button className="cancel-button" onClick={closeModal}>취소</button>
+            </div>
           </div>
         ) : (
-          // Creation form for new sticky note
-          <form className='mynoteForm' onSubmit={(e) => e.preventDefault()}>
-            <label htmlFor="note_text">제목:</label>
+          <form className="mynote-form" onSubmit={(e) => e.preventDefault()}>
+            <label htmlFor="note_title">제목:</label>
             <input
               type="text"
-              id="note_text"
+              id="note_title"
               placeholder="Write your title here"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              className="input-field"
             />
-            <label htmlFor="note_text">내용:</label>
-            <input
-              type="text"
-              id="note_text"
+            <label htmlFor="note_content">내용:</label>
+            <textarea
+              id="note_content"
               placeholder="Write your note here"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-            />
-            <button type="button" onClick={createSticky}>스티키 노트 추가</button>
+              className="textarea-field"
+            ></textarea>
+            <div className="button-group">
+              <button type="button" className="add-button" onClick={createSticky}>스티키 노트 추가</button>
+              <button type="button" className="cancel-button" onClick={closeModal}>취소</button>
+            </div>
           </form>
         )}
       </div>
