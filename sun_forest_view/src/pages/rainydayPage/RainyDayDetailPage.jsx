@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import api from "../lib/api.js";
-import "../assets/css/rain.css";
+import api from "../../lib/api.js";
+import "../../assets/css/rain.css";
 
 function RainyDayDetailPage() {
     const { postId } = useParams();

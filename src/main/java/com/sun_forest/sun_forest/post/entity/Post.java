@@ -1,5 +1,7 @@
 package com.sun_forest.sun_forest.post.entity;
 
+import java.util.Date;
+
 // import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,4 +38,7 @@ public class Post {
 
     @Column(nullable = false)
     private int visit;
+
+    @Column(nullable = false)
+    private Date regdate;
 }
