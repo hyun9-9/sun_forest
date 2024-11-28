@@ -115,6 +115,7 @@ public class MemberService {
 
         MemberDTO result = new MemberDTO();
         result.setLoginId(member.getLoginId());
+        result.setId(member.getId());
 
         return result;
     }

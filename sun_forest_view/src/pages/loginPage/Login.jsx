@@ -16,10 +16,12 @@ const handleLogin = async (e) => {
         const response = await api.post(`/api/members/login` ,  { loginId, password }  );
 
         console.log("로그인 성공:", response.loginId);
-    
-        localStorage.setItem("loginId", loginId);
 
-        console.log("localstorage", localStorage.getItem("loginId"));
+        console.log("로그인 pk :", response.id);
+    
+        localStorage.setItem("loginpk",  response.id);
+
+        console.log("localstorage", localStorage.getItem("loginpk"));
 
         alert("로그인 성공!");
 

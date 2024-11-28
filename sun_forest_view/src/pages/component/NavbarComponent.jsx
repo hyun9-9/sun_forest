@@ -9,7 +9,7 @@ export default function Navbar() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const storedLoginId = localStorage.getItem("loginId");
+        const storedLoginId = localStorage.getItem("loginpk");
         if (storedLoginId) {
             setIsLoggedIn(true);
             setLoginId(storedLoginId);  

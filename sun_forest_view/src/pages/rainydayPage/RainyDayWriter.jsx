@@ -25,7 +25,7 @@ function RainyDayWriter() {
         gubun: category,
         title,
         content,
-        memberId: localStorage.getItem("memberId"), 
+        memberId: localStorage.getItem("loginpk"), 
     };
 
     console.log('requestBody',requestBody);
