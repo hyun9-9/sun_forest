@@ -9,7 +9,9 @@ import com.sun_forest.sun_forest.member.entity.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 
-    Optional<Member> findByloginId(String LoginId);
     // 하나만 찾으면 optional 사용
+    Optional<Member> findByloginId(String LoginId);
 
+    // 닉네임 중복체크
+    Member findByName(String name);
 }

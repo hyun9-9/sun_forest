@@ -99,4 +99,17 @@ public class MemberController {
         // 로그인 성공시 200 반환
     }
 
+    @PostMapping("/check-username") // 닉네임 중복 체크
+    public ResponseEntity<Boolean> usernameCheck(@RequestBody MemberDTO memberDTO) {
+
+        System.out.println("memberDTO" + memberDTO.getName());
+
+        MemberDTO result = memberService.selectOne(memberDTO);
+
+        if (result.getId() == 0) {
+            return ResponseEntity.ok(true);
+        }
+
+        return ResponseEntity.ok(false);
+    }
 }

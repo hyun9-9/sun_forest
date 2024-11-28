@@ -10,6 +10,7 @@ import RainyDayPage from './pages/rainydayPage/RainyDayPage';
 import RainyDayWriter from './pages/rainydayPage/RainyDayWriter';
 import RainyDayDetailPage from './pages/rainydayPage/RainyDayDetailPage';
 import Login from './pages/loginPage/Login';
+import SignUp from "./pages/loginPage/SignUp";
 // import SunnyDayPage from './pages/SunnyDayPage';
 // import NoticesPage from './pages/NoticesPage';
 // import InquiryPage from './pages/InquiryPage';   
@@ -34,6 +35,7 @@ export default function Router() {
             <Route path="/write" element={<RainyDayWriter />} />
             <Route path="/rainydays/:postId" element={<RainyDayDetailPage />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
             {/* <Route path="/sunny-day" element={<SunnyDayPage />} /> */}
             {/* <Route path="/notices" element={<NoticesPage />} /> */}
             {/* <Route path="/inquiry" element={<InquiryPage />} /> */}
