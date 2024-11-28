@@ -31,6 +31,7 @@ function Modal({ isOpen, closeModal, selectedSticky }) {
         {selectedSticky ? (
           <div className="sticky-display">
             <h3 className="sticky-title">{selectedSticky.title}</h3>
+            <small>작성자: {selectedSticky.name}</small>
             <div className="sticky-note">
             <p>
             {selectedSticky.content

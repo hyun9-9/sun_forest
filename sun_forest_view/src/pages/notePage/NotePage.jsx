@@ -16,7 +16,7 @@ function NotePage() {
 
   async function fetchData() {
     const ref = await api.get('/api/posts/myNotes/1');
-    // console.log('ref', ref);
+    console.log('ref', ref);
 
   // 컬러 추가
   const stickiesRef = ref.map(item => ({
