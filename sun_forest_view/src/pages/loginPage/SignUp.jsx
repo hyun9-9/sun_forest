@@ -17,7 +17,6 @@ function SignUp() {
     const [isIdUnique, setIsIdUnique] = useState(false);
     const [imagePreview, setImagePreview] = useState(null); // 이미지 미리보기
 
-    // 입력값 변경 핸들러
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -25,7 +24,6 @@ function SignUp() {
             [name]: value,
         });
 
-        // 닉네임 또는 아이디 입력 시 중복 체크
         if (name === "name") {
             checkNameUnique(value);
         }
@@ -55,7 +53,7 @@ function SignUp() {
 
             if (response) {
                 setIsNameUnique(true);
-                setError("사용가능한 닉네임입니다."); 
+                setError("사용 가능한 닉네임입니다."); 
             } else {
                 setIsNameUnique(false);
                 setError("이미 사용 중인 닉네임입니다.");
@@ -69,12 +67,12 @@ function SignUp() {
     // 아이디 중복 체크
     const checkIdUnique = async (loginId) => {
         try {
-            const response = await api.post(`/check-loginid`, { loginId });
-            setIsIdUnique(response.data.isUnique); // 서버에서 true/false로 응답
-            if (!response.data.isUnique) {
-                setError("이미 사용 중인 아이디입니다.");
+            const response = await api.post(`/api/members/check-loginid`, { loginId });
+            setIsIdUnique(response); 
+            if (response) {
+                setError("사용 가능한 아이디입니다.");
             } else {
-                setError("");
+                setError("이미 사용 중인 아이디입니다.");
             }
         } catch (error) {
             console.error("아이디 중복 확인 실패:", error);
@@ -155,7 +153,7 @@ function SignUp() {
                         required
                     />
                     {!isNameUnique && formData.name && <p className="error-message">이미 사용 중인 닉네임입니다.</p>}
-                        {isNameUnique && formData.name && <p className="success-message">사용가능한 닉네임입니다.</p>}
+                        {isNameUnique && formData.name && <p className="success-message">사용 가능한 닉네임입니다.</p>}
                 </div>
 
                 <div className="form-group">
@@ -169,6 +167,7 @@ function SignUp() {
                         required
                     />
                     {!isIdUnique && formData.loginId && <p className="error-message">이미 사용 중인 아이디입니다.</p>}
+                    {isIdUnique && formData.loginId && <p className="error-message">사용 가능한 아이디입니다.</p>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">비밀번호</label>
@@ -192,7 +191,7 @@ function SignUp() {
                         required
                     />
                 </div>
-                {error && <p className="error-message">{error}</p>}
+                {/* {error && <p className="error-message">{error}</p>} */}
                 <button type="submit" disabled={!isNameUnique || !isIdUnique}>회원가입</button>
             </form>
         </div>

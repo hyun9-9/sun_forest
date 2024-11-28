@@ -13,4 +13,6 @@ public class MemberDTO {
     private String img; // 이미지
     private String memo; // 메모(소개)
 
+    private String searchCondition;
+
 }

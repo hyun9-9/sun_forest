@@ -120,23 +120,42 @@ public class MemberService {
         return result;
     }
 
+    // 닉네임 및 아이디 중복 체크
     public MemberDTO selectOne(MemberDTO member) {
-        // 닉네임 중복 체크
         Member nameCheck = memberRepository.findByName(member.getName());
 
-        if (nameCheck != null) {
-            System.out.println("존재하는 닉네임입니다.");
-            MemberDTO resultDTO = new MemberDTO();
-            resultDTO.setId(nameCheck.getId());
-            resultDTO.setName(nameCheck.getName());
+        Member idCheck = memberRepository.findByLoginId(member.getLoginId());
 
-            return resultDTO;
-        } else {
-            System.out.println("닉네임 사용 가능합니다.");
-            System.out.println("member" + member);
-            return member;
+        if (member.getSearchCondition().equals("checkNickname")) {
+
+            if (nameCheck != null) {
+                System.out.println("존재하는 닉네임입니다.");
+                MemberDTO resultDTO = new MemberDTO();
+                resultDTO.setId(nameCheck.getId());
+                resultDTO.setName(nameCheck.getName());
+
+                return resultDTO;
+            } else {
+                System.out.println("닉네임 사용 가능합니다.");
+                System.out.println("member" + member);
+                return member;
+            }
+        } else if (member.getSearchCondition().equals("checkLoginId")) {
+
+            if (idCheck != null) {
+                System.out.println("존재하는 아이디입니다.");
+                MemberDTO resultDTO = new MemberDTO();
+                resultDTO.setId(idCheck.getId());
+                resultDTO.setName(idCheck.getName());
+
+                return resultDTO;
+            } else {
+                System.out.println("아이디 사용 가능");
+                System.out.println("member" + member);
+                return member;
+            }
         }
-
+        return null;
     }
 
 }

@@ -104,6 +104,24 @@ public class MemberController {
 
         System.out.println("memberDTO" + memberDTO.getName());
 
+        memberDTO.setSearchCondition("checkNickname");
+
+        MemberDTO result = memberService.selectOne(memberDTO);
+
+        if (result.getId() == 0) {
+            return ResponseEntity.ok(true);
+        }
+
+        return ResponseEntity.ok(false);
+    }
+
+    @PostMapping("/check-loginid") // 아이디 중복 체크
+    public ResponseEntity<Boolean> loginIdCheck(@RequestBody MemberDTO memberDTO) {
+
+        System.out.println("memberDTO" + memberDTO.getLoginId());
+
+        memberDTO.setSearchCondition("checkLoginId");
+
         MemberDTO result = memberService.selectOne(memberDTO);
 
         if (result.getId() == 0) {

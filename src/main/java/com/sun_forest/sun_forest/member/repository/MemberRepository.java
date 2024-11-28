@@ -14,4 +14,7 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 
     // 닉네임 중복체크
     Member findByName(String name);
+
+    // 아이디 중복체크
+    Member findByLoginId(String loginId);
 }
