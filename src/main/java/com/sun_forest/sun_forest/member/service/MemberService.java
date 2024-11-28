@@ -1,13 +1,17 @@
 package com.sun_forest.sun_forest.member.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-
+import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -158,4 +162,38 @@ public class MemberService {
         return null;
     }
 
+    public boolean insert(MemberDTO memberDTO) {
+        Member member = new Member();
+        member.setLoginId(memberDTO.getLoginId());
+        member.setName(memberDTO.getName());
+        member.setPassword(memberDTO.getPassword());
+        member.setMemo(memberDTO.getMemo());
+
+        System.out.println("로그 DTO " + member);
+        try {
+            memberRepository.save(member);
+        } catch (DataIntegrityViolationException e) {
+            throw new RuntimeException("데이터 무결성 위반 발생: " + e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("알 수 없는 오류가 발생했습니다: " + e.getMessage());
+        }
+        return true;
+    }
+
+    public String saveImage(MultipartFile img) throws IOException {
+
+        String fileName = UUID.randomUUID().toString() + "-" + img.getOriginalFilename();
+        File targetFile = new File(IMAGE_DIR, fileName);
+
+        // 디렉토리가 없다면 생성
+        if (!targetFile.getParentFile().exists()) {
+            targetFile.getParentFile().mkdirs();
+        }
+
+        // 파일을 로컬에 저장
+        img.transferTo(targetFile);
+
+        // 저장된 파일 경로 리턴 (DB에 저장할 수 있는 경로)
+        return "/" + IMAGE_DIR + "/" + fileName;
+    }
 }

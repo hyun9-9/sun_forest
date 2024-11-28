@@ -10,12 +10,13 @@ function SignUp() {
         loginId: "",
         password: "",
         confirmPassword: "",
-        profileImage: null, 
+        img: null, 
+        memo: "",
     });
     const [error, setError] = useState("");
     const [isNameUnique, setIsNameUnique] = useState(false);
     const [isIdUnique, setIsIdUnique] = useState(false);
-    const [imagePreview, setImagePreview] = useState(null); // 이미지 미리보기
+    const [imagePreview, setImagePreview] = useState(null); 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -38,9 +39,9 @@ function SignUp() {
         if (file) {
             setFormData({
                 ...formData,
-                profileImage: file,
+                img: file,
             });
-            setImagePreview(URL.createObjectURL(file)); // 미리보기 이미지 설정
+            setImagePreview(URL.createObjectURL(file)); 
         }
     };
 
@@ -80,10 +81,9 @@ function SignUp() {
         }
     };
 
-    // 폼 제출 핸들러
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         // 닉네임 및 아이디 중복 확인
         if (!isNameUnique) {
             setError("닉네임이 이미 사용 중입니다.");
@@ -93,49 +93,47 @@ function SignUp() {
             setError("아이디가 이미 사용 중입니다.");
             return;
         }
-
+    
         // 비밀번호 확인 체크
         if (formData.password !== formData.confirmPassword) {
             setError("비밀번호가 일치하지 않습니다.");
             return;
         }
-
+    
         try {
-            // FormData 객체 생성
-            const formDataToSend = new FormData();
-            formDataToSend.append("name", formData.name);
-            formDataToSend.append("loginId", formData.loginId);
-            formDataToSend.append("password", formData.password);
-            formDataToSend.append("profileImage", formData.profileImage); // 프로필 사진 추가
+            // 회원가입 요청 보내기 (이미지 포함 여부 확인)
+            const jsonData = {
+                name: formData.name,
+                loginId: formData.loginId,
+                password: formData.password,
+                memo: formData.memo,
+            };
+    
+            const jsonResponse = await api.post("/api/members/signup", jsonData);
+            
+            console.log("응답:", jsonResponse);
 
-            // 서버로 데이터 전송
-            const response = await api.post("/signup", formDataToSend, {
-                headers: {
-                    "Content-Type": "multipart/form-data", // 파일 전송 시 필요한 헤더
-                },
-            });
+            console.log("응답 숫자:", jsonResponse.status);
 
-            if (response.status === 200) {
                 alert("회원가입 성공!");
                 navigate("/login"); // 로그인 페이지로 이동
-            }
         } catch (error) {
             console.error(error);
             setError("회원가입에 실패했습니다. 다시 시도해주세요.");
         }
     };
-
+    
     return (
         <div className="signup-container">
             <h2>회원가입</h2>
             <form onSubmit={handleSubmit}>
                   {/* 프로필 사진 업로드 */}
                 <div className="form-group">
-                    <label htmlFor="profileImage">프로필 사진</label>
+                    <label htmlFor="img">프로필 사진</label>
                     <input
                         type="file"
-                        id="profileImage"
-                        name="profileImage"
+                        id="img"
+                        name="img"
                         accept="image/*"
                         onChange={handleImageChange}
                     />
@@ -187,6 +185,17 @@ function SignUp() {
                         id="confirmPassword"
                         name="confirmPassword"
                         value={formData.confirmPassword}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="memo">소개</label>
+                    <input
+                        type="text"
+                        id="memo"
+                        name="memo"
+                        value={formData.memo}
                         onChange={handleChange}
                         required
                     />

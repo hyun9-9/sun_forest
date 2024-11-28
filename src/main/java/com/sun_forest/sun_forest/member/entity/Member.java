@@ -34,7 +34,7 @@ public class Member {
     @Column(nullable = true)
     private int sunCoin; // 코인
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String img; // 이미지(프사)
 
     @Column(nullable = false)

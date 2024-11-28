@@ -1,6 +1,9 @@
 package com.sun_forest.sun_forest.member.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -130,4 +133,27 @@ public class MemberController {
 
         return ResponseEntity.ok(false);
     }
+
+    @PostMapping("/signup") // 회원가입 (프로필 제외)
+    public ResponseEntity<MemberDTO> signUp(@RequestBody MemberDTO memberDTO) {
+
+        System.out.println("member id: " + memberDTO.getLoginId());
+        System.out.println("member name: " + memberDTO.getName());
+        System.out.println("member password: " + memberDTO.getPassword());
+
+        try {
+
+            boolean result = memberService.insert(memberDTO);
+
+            if (result) {
+                return ResponseEntity.status(HttpStatus.OK).body(memberDTO);
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
 }
