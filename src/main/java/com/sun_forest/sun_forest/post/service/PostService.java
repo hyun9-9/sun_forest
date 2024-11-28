@@ -5,17 +5,26 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.hibernate.transform.Transformers;
+import org.postgresql.core.NativeQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.sun_forest.sun_forest.post.dto.PostDTO;
 import com.sun_forest.sun_forest.post.repository.PostRepository;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
 import com.sun_forest.sun_forest.post.entity.Post;
 
 @Service
 public class PostService {
   private final PostRepository postRepository;
+  
+  @PersistenceContext
+  private EntityManager entityManager;
 
   @Autowired
   public PostService(PostRepository postRepository) {
@@ -40,20 +49,20 @@ public class PostService {
           })
           .collect(Collectors.toList());
     } else if (postDTO.getSearch().equals("getPostById")) {
-      pList = postRepository.findById(postDTO.getMemberId()).stream()
-          .map(post -> {
-            PostDTO dto = new PostDTO();
-            dto.setId(post.getId());
-            dto.setTitle(post.getTitle());
-            dto.setMemberId(post.getMemberId());
-            dto.setContent(post.getContent());
-            dto.setGubun(post.getGubun());
-            dto.setVisit(post.getVisit());
-            dto.setRegdate(post.getRegdate());
-            dto.setView(post.isView());
-            return dto;
-          })
-          .collect(Collectors.toList());
+      pList = postRepository.findPostsByMemberId(postDTO.getMemberId()).stream()
+      .map(projection -> {
+          PostDTO dto = new PostDTO();
+          dto.setId(projection.getPostId());
+          dto.setTitle(projection.getTitle());
+          dto.setContent(projection.getContent());
+          dto.setGubun(projection.getGubun());
+          dto.setVisit(projection.getVisit());
+          dto.setRegdate(projection.getRegDate());
+          dto.setView(projection.getIsView());
+          dto.setName(projection.getMemberName());
+          return dto;
+      })
+      .collect(Collectors.toList());
     }
     return pList;
   }

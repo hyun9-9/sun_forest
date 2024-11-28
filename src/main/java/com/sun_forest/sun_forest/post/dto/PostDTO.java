@@ -18,5 +18,8 @@ public class PostDTO {
     private Date regdate; // 글 쓴 날짜 (java.util.Date)
     private boolean view; // 공개 여부
 
+    //맴버
+    private String name;// 맴버 이름
+
     private String search;
 }

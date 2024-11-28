@@ -1,19 +1,25 @@
 package com.sun_forest.sun_forest.post.interfacefile;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public interface PostWithMemberReactionProjection {
-    Long getPostId();
+    Integer getPostId();
 
     String getTitle();
 
     String getMemberId();
 
-    LocalDateTime getRegDate();
+    Date getRegDate();
 
     Integer getVisit();
 
     String getMemberName();
 
     Integer getReactionNum();
+
+    String getContent();
+
+    String getGubun();
+
+    Boolean getIsView();
 }

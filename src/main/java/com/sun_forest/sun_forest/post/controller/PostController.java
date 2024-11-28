@@ -46,10 +46,11 @@ public class PostController {
 
     // @RequestParam Long id <- ex) /myNotes?id=1 => 검색조건
     // @PathVariable Long id <- ex) /myNotes/1 => 특정 리소스 조회
-    @GetMapping("/myNotes/{id}")
-    public ResponseEntity<List<PostDTO>> myNotes(@PathVariable int id) {
+    @GetMapping("/myNotes/{memberId}")
+    public ResponseEntity<List<PostDTO>> myNotes(@PathVariable int memberId) {
         PostDTO postDTO = new PostDTO();
-        postDTO.setMemberId(id);
+        postDTO.setSearch("getPostById");
+        postDTO.setMemberId(memberId);
         List<PostDTO> postDTOs = postService.selectAll(postDTO);
         return ResponseEntity.ok(postDTOs);
     }

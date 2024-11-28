@@ -7,6 +7,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function Modal({ isOpen, closeModal, selectedSticky }) {
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
+  const [gubun, setGubun] = useState('');
 
   const deleteSticky = async () => {
     await api.post('/api/posts/deletePost', selectedSticky);
@@ -14,7 +15,7 @@ function Modal({ isOpen, closeModal, selectedSticky }) {
   };
 
   const createSticky = async () => {
-    const newSticky = { title, memberId: 1, content, gubun: 'mynote', view :false };
+    const newSticky = { title, memberId: localStorage.getItem("loginpk"), content, gubun, view :false };
     await api.post('/api/posts/myNotes/save', newSticky);
     closeModal();
   };
@@ -50,7 +51,7 @@ function Modal({ isOpen, closeModal, selectedSticky }) {
         ) : (
             <form className='writeForm' onSubmit={(e) => e.preventDefault()}>
                 <div className='dropdownContainer'>
-                    <select id="categoryDropdown" className='styledDropdown'>
+                    <select id="categoryDropdown" className='styledDropdown' value={gubun} onChange={(e) => setGubun(e.target.value)}>
                         <option value="">카테고리를 선택하세요</option>
                         <option value="sundays">햇살숲</option>
                         <option value="rainydays">비오는날</option>
